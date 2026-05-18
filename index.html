@@ -641,16 +641,25 @@
 <style>
     .chart-container .chart-mmlupro,
     .chart-container .chart-gpqa {
-      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
     }
     .chart-container .chart-gpqa {
-      display: none;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .chart-container .chart-mmlupro {
+      opacity: 1;
     }
     .chart-container.show-gpqa .chart-mmlupro {
-      display: none;
+      opacity: 0;
+      pointer-events: none;
     }
     .chart-container.show-gpqa .chart-gpqa {
-      display: block;
+      opacity: 1;
+      pointer-events: auto;
     }
   </style>
 <script>
