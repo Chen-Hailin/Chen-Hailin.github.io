@@ -602,8 +602,14 @@
           </div>        <div class="kp-divider">━ ━ ━</div>
 
         <div class="kp-section">
-          <h2>IV. Token Count Scaling Over Time</h2>
-          <svg viewBox="0 0 780 460" style="width:100%;max-width:780px;display:block;margin:0.5em auto;font-family:Georgia,serif;">
+                    <h2>IV. Scaling Over Time</h2>
+          <div style="text-align:center;margin-bottom:0.8em;">
+            <button class="time-btn active" data-time="tokens" style="background:#5a2a0a;color:#f5edd6;border:1px solid #8b7750;padding:0.3em 1em;font-size:0.7em;font-family:Georgia,serif;cursor:pointer;border-radius:2px;margin:0 0.2em;">Tokens</button>
+            <button class="time-btn" data-time="params" style="background:transparent;color:#5a2a0a;border:1px solid #8b7750;padding:0.3em 1em;font-size:0.7em;font-family:Georgia,serif;cursor:pointer;border-radius:2px;margin:0 0.2em;">Params</button>
+            <button class="time-btn" data-time="flops" style="background:transparent;color:#5a2a0a;border:1px solid #8b7750;padding:0.3em 1em;font-size:0.7em;font-family:Georgia,serif;cursor:pointer;border-radius:2px;margin:0 0.2em;">FLOPs</button>
+          </div>
+          <div class="time-container" style="position:relative;min-height:470px;">
+                      <svg viewBox="0 0 780 460" style="width:100%;max-width:780px;display:block;margin:0 auto;font-family:Georgia,serif;" class="time-chart-tokens">
             <line x1="80" y1="395.0" x2="750" y2="395.0" stroke="#d4c39e" stroke-width="0.5"/><line x1="80" y1="328.3" x2="750" y2="328.3" stroke="#d4c39e" stroke-width="0.5"/><line x1="80" y1="261.6" x2="750" y2="261.6" stroke="#d4c39e" stroke-width="0.5"/><line x1="80" y1="194.9" x2="750" y2="194.9" stroke="#d4c39e" stroke-width="0.5"/><line x1="80" y1="128.2" x2="750" y2="128.2" stroke="#d4c39e" stroke-width="0.5"/><line x1="80" y1="61.5" x2="750" y2="61.5" stroke="#d4c39e" stroke-width="0.5"/>
             <text x="72" y="399.0" text-anchor="end" font-size="10" fill="#7a5c3a">1T</text><text x="72" y="332.3" text-anchor="end" font-size="10" fill="#7a5c3a">2T</text><text x="72" y="265.6" text-anchor="end" font-size="10" fill="#7a5c3a">4T</text><text x="72" y="198.9" text-anchor="end" font-size="10" fill="#7a5c3a">8T</text><text x="72" y="132.2" text-anchor="end" font-size="10" fill="#7a5c3a">16T</text><text x="72" y="65.5" text-anchor="end" font-size="10" fill="#7a5c3a">32T</text>
             <text x="14" y="230.0" text-anchor="middle" font-size="11" fill="#5a3a1a" transform="rotate(-90,14,230.0)">Training Tokens</text>
@@ -612,13 +618,31 @@
             <text x="415.0" y="456" text-anchor="middle" font-size="11" fill="#5a3a1a">Year</text>
             <polyline points="147.0,362.6 281.0,274.4 415.0,116.8 549.0,106.7 683.0,61.5" fill="none" stroke="#5a2a0a" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
             <circle cx="147.0" cy="362.6" r="6" fill="#8b2211" stroke="#5a2a0a" stroke-width="1.5"/><circle cx="281.0" cy="274.4" r="6" fill="#8b2211" stroke="#5a2a0a" stroke-width="1.5"/><circle cx="415.0" cy="116.8" r="6" fill="#8b2211" stroke="#5a2a0a" stroke-width="1.5"/><circle cx="549.0" cy="106.7" r="6" fill="#8b2211" stroke="#5a2a0a" stroke-width="1.5"/><circle cx="683.0" cy="61.5" r="6" fill="#8b2211" stroke="#5a2a0a" stroke-width="1.5"/>
-            <text x="147.0" y="350.6" text-anchor="middle" font-size="9" fill="#3a2a0e">Chinchilla (1.4T)</text><text x="281.0" y="262.4" text-anchor="middle" font-size="9" fill="#3a2a0e">Falcon 180B (3.5T)</text><text x="415.0" y="104.8" text-anchor="middle" font-size="9" fill="#3a2a0e">Qwen 2.5-72B (18T)</text><text x="549.0" y="80.0" text-anchor="middle" font-size="9" fill="#3a2a0e">Qwen 3 (~20T)</text><text x="683.0" y="49.5" text-anchor="middle" font-size="9" fill="#3a2a0e">DS V4 Pro (32T)</text>
+            <text x="147.0" y="348.6" text-anchor="middle" font-size="9" fill="#3a2a0e">Chinchilla (1.4T)</text><text x="281.0" y="260.4" text-anchor="middle" font-size="9" fill="#3a2a0e">Falcon 180B (3.5T)</text><text x="415.0" y="102.8" text-anchor="middle" font-size="9" fill="#3a2a0e">Qwen 2.5-72B (18T)</text><text x="549.0" y="92.7" text-anchor="middle" font-size="9" fill="#3a2a0e">Qwen 3 (~20T)</text><text x="683.0" y="47.5" text-anchor="middle" font-size="9" fill="#3a2a0e">DS V4 Pro (32T)</text>
           </svg>
-          <p style="font-size:0.75em; color:#7a5c3a; text-align:center; margin-top:0.3em;">
-            Largest reported pre-training token counts by year (log scale).
-            
-          </p>
-        </div>
+                      <svg viewBox="0 0 780 460" style="width:100%;max-width:780px;display:block;margin:0 auto;font-family:Georgia,serif;" class="time-chart-params">
+            <line x1="80" y1="179.9" x2="750" y2="179.9" stroke="#d4c39e" stroke-width="0.5"/><line x1="80" y1="147.5" x2="750" y2="147.5" stroke="#d4c39e" stroke-width="0.5"/><line x1="80" y1="115.2" x2="750" y2="115.2" stroke="#d4c39e" stroke-width="0.5"/><line x1="80" y1="82.8" x2="750" y2="82.8" stroke="#d4c39e" stroke-width="0.5"/><line x1="80" y1="50.4" x2="750" y2="50.4" stroke="#d4c39e" stroke-width="0.5"/>
+            <text x="72" y="183.9" text-anchor="end" font-size="10" fill="#7a5c3a">100B</text><text x="72" y="151.5" text-anchor="end" font-size="10" fill="#7a5c3a">200B</text><text x="72" y="119.2" text-anchor="end" font-size="10" fill="#7a5c3a">400B</text><text x="72" y="86.8" text-anchor="end" font-size="10" fill="#7a5c3a">800B</text><text x="72" y="54.4" text-anchor="end" font-size="10" fill="#7a5c3a">1.6T</text>
+            <text x="14" y="230.0" text-anchor="middle" font-size="11" fill="#5a3a1a" transform="rotate(-90,14,230.0)">Params (total)</text>
+            <line x1="147.0" y1="40" x2="147.0" y2="395" stroke="#d4c39e" stroke-width="0.5"/><line x1="281.0" y1="40" x2="281.0" y2="395" stroke="#d4c39e" stroke-width="0.5"/><line x1="415.0" y1="40" x2="415.0" y2="395" stroke="#d4c39e" stroke-width="0.5"/><line x1="549.0" y1="40" x2="549.0" y2="395" stroke="#d4c39e" stroke-width="0.5"/><line x1="683.0" y1="40" x2="683.0" y2="395" stroke="#d4c39e" stroke-width="0.5"/>
+            <text x="147.0" y="413" text-anchor="middle" font-size="11" fill="#7a5c3a">2022</text><text x="281.0" y="413" text-anchor="middle" font-size="11" fill="#7a5c3a">2023</text><text x="415.0" y="413" text-anchor="middle" font-size="11" fill="#7a5c3a">2024</text><text x="549.0" y="413" text-anchor="middle" font-size="11" fill="#7a5c3a">2025</text><text x="683.0" y="413" text-anchor="middle" font-size="11" fill="#7a5c3a">2026</text>
+            <text x="415.0" y="456" text-anchor="middle" font-size="11" fill="#5a3a1a">Year</text>
+            <polyline points="147.0,101.2 281.0,152.5 415.0,114.6 549.0,91.0 683.0,50.4" fill="none" stroke="#5a2a0a" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+            <circle cx="147.0" cy="101.2" r="6" fill="#8b2211" stroke="#5a2a0a" stroke-width="1.5"/><circle cx="281.0" cy="152.5" r="6" fill="#8b2211" stroke="#5a2a0a" stroke-width="1.5"/><circle cx="415.0" cy="114.6" r="6" fill="#8b2211" stroke="#5a2a0a" stroke-width="1.5"/><circle cx="549.0" cy="91.0" r="6" fill="#8b2211" stroke="#5a2a0a" stroke-width="1.5"/><circle cx="683.0" cy="50.4" r="6" fill="#8b2211" stroke="#5a2a0a" stroke-width="1.5"/>
+            <text x="147.0" y="87.2" text-anchor="middle" font-size="9" fill="#3a2a0e">PaLM (540B)</text><text x="281.0" y="138.5" text-anchor="middle" font-size="9" fill="#3a2a0e">Falcon 180B</text><text x="415.0" y="100.6" text-anchor="middle" font-size="9" fill="#3a2a0e">LLaMA 3 405B</text><text x="549.0" y="77.0" text-anchor="middle" font-size="9" fill="#3a2a0e">DS V3 (671B)</text><text x="683.0" y="36.4" text-anchor="middle" font-size="9" fill="#3a2a0e">DS V4 Pro (1.6T)</text>
+          </svg>
+                      <svg viewBox="0 0 780 460" style="width:100%;max-width:780px;display:block;margin:0 auto;font-family:Georgia,serif;" class="time-chart-flops">
+            <line x1="80" y1="395.0" x2="750" y2="395.0" stroke="#d4c39e" stroke-width="0.5"/><line x1="80" y1="329.9" x2="750" y2="329.9" stroke="#d4c39e" stroke-width="0.5"/><line x1="80" y1="258.6" x2="750" y2="258.6" stroke="#d4c39e" stroke-width="0.5"/><line x1="80" y1="193.5" x2="750" y2="193.5" stroke="#d4c39e" stroke-width="0.5"/><line x1="80" y1="122.1" x2="750" y2="122.1" stroke="#d4c39e" stroke-width="0.5"/><line x1="80" y1="57.0" x2="750" y2="57.0" stroke="#d4c39e" stroke-width="0.5"/>
+            <text x="72" y="399.0" text-anchor="end" font-size="10" fill="#7a5c3a">1Y</text><text x="72" y="333.9" text-anchor="end" font-size="10" fill="#7a5c3a">3Y</text><text x="72" y="262.6" text-anchor="end" font-size="10" fill="#7a5c3a">10Y</text><text x="72" y="197.5" text-anchor="end" font-size="10" fill="#7a5c3a">30Y</text><text x="72" y="126.1" text-anchor="end" font-size="10" fill="#7a5c3a">100Y</text><text x="72" y="61.0" text-anchor="end" font-size="10" fill="#7a5c3a">300Y</text>
+            <text x="14" y="230.0" text-anchor="middle" font-size="11" fill="#5a3a1a" transform="rotate(-90,14,230.0)">Training FLOPs</text>
+            <line x1="147.0" y1="40" x2="147.0" y2="395" stroke="#d4c39e" stroke-width="0.5"/><line x1="281.0" y1="40" x2="281.0" y2="395" stroke="#d4c39e" stroke-width="0.5"/><line x1="415.0" y1="40" x2="415.0" y2="395" stroke="#d4c39e" stroke-width="0.5"/><line x1="549.0" y1="40" x2="549.0" y2="395" stroke="#d4c39e" stroke-width="0.5"/><line x1="683.0" y1="40" x2="683.0" y2="395" stroke="#d4c39e" stroke-width="0.5"/>
+            <text x="147.0" y="413" text-anchor="middle" font-size="11" fill="#7a5c3a">2022</text><text x="281.0" y="413" text-anchor="middle" font-size="11" fill="#7a5c3a">2023</text><text x="415.0" y="413" text-anchor="middle" font-size="11" fill="#7a5c3a">2024</text><text x="549.0" y="413" text-anchor="middle" font-size="11" fill="#7a5c3a">2025</text><text x="683.0" y="413" text-anchor="middle" font-size="11" fill="#7a5c3a">2026</text>
+            <text x="415.0" y="456" text-anchor="middle" font-size="11" fill="#5a3a1a">Year</text>
+            <polyline points="147.0,340.0 281.0,316.2 415.0,181.9 549.0,152.8 683.0,55.7" fill="none" stroke="#5a2a0a" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+            <circle cx="147.0" cy="340.0" r="6" fill="#8b2211" stroke="#5a2a0a" stroke-width="1.5"/><circle cx="281.0" cy="316.2" r="6" fill="#8b2211" stroke="#5a2a0a" stroke-width="1.5"/><circle cx="415.0" cy="181.9" r="6" fill="#8b2211" stroke="#5a2a0a" stroke-width="1.5"/><circle cx="549.0" cy="152.8" r="6" fill="#8b2211" stroke="#5a2a0a" stroke-width="1.5"/><circle cx="683.0" cy="55.7" r="6" fill="#8b2211" stroke="#5a2a0a" stroke-width="1.5"/>
+            <text x="147.0" y="326.0" text-anchor="middle" font-size="9" fill="#3a2a0e">PaLM (2.5 YFLOPs)</text><text x="281.0" y="302.2" text-anchor="middle" font-size="9" fill="#3a2a0e">Falcon (3.8 YFLOPs)</text><text x="415.0" y="167.9" text-anchor="middle" font-size="9" fill="#3a2a0e">LLaMA 3 (36 YFLOPs)</text><text x="549.0" y="138.8" text-anchor="middle" font-size="9" fill="#3a2a0e">DS V3 (60 YFLOPs)</text><text x="683.0" y="41.7" text-anchor="middle" font-size="9" fill="#3a2a0e">DS V4 (307 YFLOPs)</text>
+          </svg>
+          </div>
         <div class="kp-footer">
           ⚠ The above represents the author's current understanding and may be incomplete.<br>
           LLM research advances rapidly. Last revised: May 2026.
@@ -657,6 +681,49 @@
       opacity: 0;
       pointer-events: none;
     }
+    .time-container .time-chart-tokens,
+    .time-container .time-chart-params,
+    .time-container .time-chart-flops {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+    .time-container .time-chart-params,
+    .time-container .time-chart-flops {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .time-container .time-chart-tokens {
+      opacity: 1;
+    }
+    .time-container.show-tokens .time-chart-params,
+    .time-container.show-tokens .time-chart-flops {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .time-container.show-tokens .time-chart-tokens {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .time-container.show-params .time-chart-tokens,
+    .time-container.show-flops .time-chart-tokens {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .time-container.show-params .time-chart-params {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .time-container.show-flops .time-chart-flops {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .time-container.show-params .time-chart-flops,
+    .time-container.show-flops .time-chart-params {
+      opacity: 0;
+      pointer-events: none;
+    }
     .chart-container.show-gpqa .chart-gpqa {
       opacity: 1;
       pointer-events: auto;
@@ -687,7 +754,24 @@
     }
   });
 
+    // Time chart toggle
+    document.querySelectorAll('.time-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.time-btn').forEach(b => {
+          b.style.background = 'transparent';
+          b.style.color = '#5a2a0a';
+        });
+        this.style.background = '#5a2a0a';
+        this.style.color = '#f5edd6';
+        const chart = this.dataset.time;
+        document.querySelectorAll('.time-container').forEach(c => {
+          c.className = 'time-container show-' + chart;
+        });
+      });
+    });
+
     // Chart toggle
+    document.querySelectorAll('.chart-btn').forEach(btn => {
     document.querySelectorAll('.chart-btn').forEach(btn => {
       btn.addEventListener('click', function() {
         document.querySelectorAll('.chart-btn').forEach(b => {
