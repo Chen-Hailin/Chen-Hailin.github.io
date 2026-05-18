@@ -563,44 +563,46 @@
             <li>Chinchilla law: <strong>20 tokens / param</strong> &mdash; but inference-aware scaling pushes ratio much higher [<a href="https://arxiv.org/abs/2401.00448">Sardana et al. 2024</a>]</li>
             <li>DeepSeek V4 Pro: <strong>1.6T</strong> total params (49B active) &middot; <strong>32T</strong> training tokens</li>
             <li>FLOPs/param/token = <strong>6</strong> (fwd×1 + bwd×2 + wupdate×2)</li>
-            <li>Total: 6 × 1.6e12 × 32e12 = <strong>3.07e26</strong> (307 YottaFLOPs)</li>
+            <li>Total training FLOPs: 6 × 1.6e12 × 32e12 = <strong>3.07e26</strong> (307 YottaFLOPs)</li>
+            <li>H200 FP8 peak: 3,958 TFLOPS &middot; MFU ≈ 40% &rarr; ~1,583 eff TFLOPS</li>
+            <li><strong>~54M GPU-hours</strong> &middot; 100K H200 &rarr; <strong>~23 days</strong> &middot; ~$162M</li>
           </ul>
         </div>
 
         <div class="kp-divider">━ ━ ━</div>
 
         <div class="kp-section">
-          <h2>II. Compute (H200-equiv)</h2>
-          <ul>
-            <li>H200 FP8 peak: 3,958 TFLOPS &middot; MFU @ scale ≈ 40% &rarr; ~1,583 eff TFLOPS</li>
-            <li><strong>~54M GPU-hours</strong> &middot; 100K H200 &rarr; <strong>~23 days</strong> &middot; ~$162M (@ $3/GPU-hr)</li>
-          </ul>
-        </div>
-
-        <div class="kp-divider">━ ━ ━</div>
-
-        <div class="kp-section">
-          <h2>III. Ratio Reference</h2>
+          <h2>II. Ratio Reference</h2>
           <ul>
             <li><strong>Qwen 3.5 397B-A17B</strong>: ~26T tokens &rarr; ~65:1</li>
-            <li><strong>Gemma 4 26B-A4B</strong>: ~13T tokens &rarr; ~500:1**</li>
+            <li><strong>Gemma 4 26B-A4B</strong>: ~13T tokens &rarr; ~500:1</li>
             <li><strong>K2.5 1T-A32B</strong>: ~18T tokens &rarr; ~18:1</li>
             <li><strong>DS V4 Pro 1.6T</strong>: 32T tokens &rarr; 20:1</li>
             <li><strong>LLaMA 3 405B</strong>: 15T tokens &rarr; 37:1</li>
           </ul>
-          <p style="font-size:0.75em; color:#8b7750; margin-top:0.3em;">** Small dense model, trained far beyond Chinchilla</p>
         </div>
 
         <div class="kp-divider">━ ━ ━</div>
 
         <div class="kp-section">
-          <h2>IV. MoE Inference</h2>
+          <h2>III. Performance vs. Scaling (MMLU-Pro)</h2>
           <ul>
-            <li>Dense: 2×N &middot; MoE: 2×N<sub>active</sub> FLOPs/token</li>
-            <li>DS V4 Pro: 2×49B = <strong>98 GFLOPs/token</strong></li>
-            <li>Equiv dense (~1.8T): 2×1.8T = <strong>3.6 TFLOPs/token</strong></li>
-            <li><strong>~37× cheaper</strong> per inference token vs. equivalent dense model</li>
+            <li><strong>Qwen 3.5 397B</strong> (397B) &rarr; 87.8</li>
+            <li><strong>K2.5 1T-A32B</strong> (1T) &rarr; 87.1</li>
+            <li><strong>Qwen 3.5 27B</strong> (27B) &rarr; ~84</li>
+            <li><strong>Qwen 3.5 9B</strong> (9B) &rarr; ~78</li>
+            <li><strong>Qwen 3.5 4B</strong> (4B) &rarr; ~73</li>
+            <li><strong>Qwen 3.5 2B</strong> (2B) &rarr; ~66</li>
+            <li><strong>LLaMA 3 405B</strong> (405B) &rarr; ~85</li>
+            <li><strong>LLaMA 3 70B</strong> (70B) &rarr; ~77</li>
+            <li><strong>Gemma 4 26B</strong> (26B) &rarr; ~82</li>
+            <li><strong>DS V3 671B</strong> (671B) &rarr; ~85</li>
           </ul>
+          <p style="font-size:0.8em; color:#7a5c3a;">
+            MoE models shown at full param count. Scores are approximate from
+            technical reports and leaderboards. Trend: log-linear scaling with
+            diminishing returns past ~100B parameters.
+          </p>
         </div>
         <div class="kp-footer">
           ⚠ The above represents the author's current understanding and may be incomplete.<br>
