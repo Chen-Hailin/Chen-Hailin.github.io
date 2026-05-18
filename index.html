@@ -6,6 +6,9 @@
   <title>Hailin Chen</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
+    .knowledge-mode .sidebar { display: none; }
+    .knowledge-mode .wrapper { display: block; }
+    .knowledge-mode .main { max-width: 100%; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 16px; background: #fff; }
     @media (min-width: 48em) { html { font-size: 18px; } }
@@ -638,8 +641,14 @@
         this.classList.add('active');
         Object.values(contents).forEach(c => c.classList.remove('active'));
         if (contents[target]) contents[target].classList.add('active');
+        document.body.classList.toggle('knowledge-mode', target === 'knowledge');
       });
     });
+
+    // Set correct initial state
+    if (document.querySelector('.nav-tab.active')?.dataset.tab === 'knowledge') {
+      document.body.classList.add('knowledge-mode');
+    }
   });
 </script>
 
