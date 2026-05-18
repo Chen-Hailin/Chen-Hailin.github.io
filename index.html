@@ -605,7 +605,26 @@
             Roughly log-linear: ~5-8 pt / 10× params. Small models near random (25%), large models still &lt;60%.
           </p>
             </div>
-          </div>
+          </div>        <div class="kp-divider">━ ━ ━</div>
+
+        <div class="kp-section">
+          <h2>IV. Token Count Scaling Over Time</h2>
+          <svg viewBox="0 0 780 460" style="width:100%;max-width:780px;display:block;margin:0.5em auto;font-family:Georgia,serif;">
+            <line x1="80" y1="395.0" x2="750" y2="395.0" stroke="#d4c39e" stroke-width="0.5"/><line x1="80" y1="328.3" x2="750" y2="328.3" stroke="#d4c39e" stroke-width="0.5"/><line x1="80" y1="261.6" x2="750" y2="261.6" stroke="#d4c39e" stroke-width="0.5"/><line x1="80" y1="194.9" x2="750" y2="194.9" stroke="#d4c39e" stroke-width="0.5"/><line x1="80" y1="128.2" x2="750" y2="128.2" stroke="#d4c39e" stroke-width="0.5"/><line x1="80" y1="61.5" x2="750" y2="61.5" stroke="#d4c39e" stroke-width="0.5"/>
+            <text x="72" y="399.0" text-anchor="end" font-size="10" fill="#7a5c3a">1T</text><text x="72" y="332.3" text-anchor="end" font-size="10" fill="#7a5c3a">2T</text><text x="72" y="265.6" text-anchor="end" font-size="10" fill="#7a5c3a">4T</text><text x="72" y="198.9" text-anchor="end" font-size="10" fill="#7a5c3a">8T</text><text x="72" y="132.2" text-anchor="end" font-size="10" fill="#7a5c3a">16T</text><text x="72" y="65.5" text-anchor="end" font-size="10" fill="#7a5c3a">32T</text>
+            <text x="14" y="230.0" text-anchor="middle" font-size="11" fill="#5a3a1a" transform="rotate(-90,14,230.0)">Training Tokens</text>
+            <line x1="147.0" y1="40" x2="147.0" y2="395" stroke="#d4c39e" stroke-width="0.5"/><line x1="281.0" y1="40" x2="281.0" y2="395" stroke="#d4c39e" stroke-width="0.5"/><line x1="415.0" y1="40" x2="415.0" y2="395" stroke="#d4c39e" stroke-width="0.5"/><line x1="549.0" y1="40" x2="549.0" y2="395" stroke="#d4c39e" stroke-width="0.5"/><line x1="683.0" y1="40" x2="683.0" y2="395" stroke="#d4c39e" stroke-width="0.5"/>
+            <text x="147.0" y="413" text-anchor="middle" font-size="11" fill="#7a5c3a">2022</text><text x="281.0" y="413" text-anchor="middle" font-size="11" fill="#7a5c3a">2023</text><text x="415.0" y="413" text-anchor="middle" font-size="11" fill="#7a5c3a">2024</text><text x="549.0" y="413" text-anchor="middle" font-size="11" fill="#7a5c3a">2025</text><text x="683.0" y="413" text-anchor="middle" font-size="11" fill="#7a5c3a">2026</text>
+            <text x="415.0" y="456" text-anchor="middle" font-size="11" fill="#5a3a1a">Year</text>
+            <polyline points="147.0,362.6 281.0,274.4 415.0,116.8 549.0,106.7 683.0,61.5" fill="none" stroke="#5a2a0a" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+            <circle cx="147.0" cy="362.6" r="6" fill="#8b2211" stroke="#5a2a0a" stroke-width="1.5"/><circle cx="281.0" cy="274.4" r="6" fill="#8b2211" stroke="#5a2a0a" stroke-width="1.5"/><circle cx="415.0" cy="116.8" r="6" fill="#8b2211" stroke="#5a2a0a" stroke-width="1.5"/><circle cx="549.0" cy="106.7" r="6" fill="#8b2211" stroke="#5a2a0a" stroke-width="1.5"/><circle cx="683.0" cy="61.5" r="6" fill="#8b2211" stroke="#5a2a0a" stroke-width="1.5"/>
+            <text x="147.0" y="350.6" text-anchor="middle" font-size="9" fill="#3a2a0e">Chinchilla (1.4T)</text><text x="281.0" y="262.4" text-anchor="middle" font-size="9" fill="#3a2a0e">Falcon 180B (3.5T)</text><text x="415.0" y="104.8" text-anchor="middle" font-size="9" fill="#3a2a0e">Qwen 2.5-72B (18T)</text><text x="549.0" y="80.0" text-anchor="middle" font-size="9" fill="#3a2a0e">Qwen 3 (~20T)</text><text x="683.0" y="49.5" text-anchor="middle" font-size="9" fill="#3a2a0e">DS V4 Pro (32T)</text>
+          </svg>
+          <p style="font-size:0.75em; color:#7a5c3a; text-align:center; margin-top:0.3em;">
+            Largest reported pre-training token counts by year (log scale).<br>
+            ~2.5× per year from 2022-2025, slowing to ~1.8× from 2024-2026. Data quality replacing raw scale.
+          </p>
+        </div>
         <div class="kp-footer">
           ⚠ The above represents the author's current understanding and may be incomplete.<br>
           LLM research advances rapidly. Last revised: May 2026.
