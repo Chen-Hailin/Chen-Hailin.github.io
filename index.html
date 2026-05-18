@@ -555,88 +555,77 @@
           <div class="kp-episode">LLM.DOCS — Compiled May 2026</div>
         </div>
 
-        <div class="kp-section">
-          <h2>I. The Transformer Architecture</h2>
-          <p>
-            At their core, LLMs are <strong>next-token predictors</strong> trained on vast
-            corpora of text. The transformer architecture — specifically the decoder-only
-            variant — uses stacked self-attention layers and feed-forward networks.
-            Attention mechanisms allow each token to "look at" every previous token,
-            building contextual representations through learned query-key-value projections.
-          </p>
-          <p>
-            The key insight: scale unlocks <strong>emergent abilities</strong> that smaller
-            models simply don't exhibit. These aren't explicitly programmed — they arise
-            from the statistics of language at scale. Instruction following, in-context
-            learning, chain-of-thought reasoning — none were designed into the architecture,
-            yet they emerge beyond certain compute thresholds.
-          </p>
-        </div>
-
-        <div class="kp-divider">◆ ◆ ◆</div>
+        <div class="kp-divider">━ ━ ━</div>
 
         <div class="kp-section">
-          <h2>II. Training Pipeline</h2>
+          <h2>I. Basic Statistics</h2>
+          <p>
+            <strong>Chinchilla Law</strong> — The compute-optimal ratio for training LLMs is
+            approximately <strong>20 tokens per parameter</strong> (Hoffmann et al., 2022).
+            However, when accounting for inference cost, the optimal ratio shifts significantly
+            higher — often exceeding 100:1 — because a smaller model trained on more tokens
+            is cheaper to serve (Sardana et al., 2024; "Beyond Chinchilla-Optimal"). As
+            noted by Meta researchers, training beyond the Chinchilla point produces
+            models that are more inference-efficient, even if the training cost is higher.
+          </p>
+
           <ul>
-            <li><strong>Pre-training</strong> — Autoregressive language modeling on trillions of tokens. This is where the model acquires linguistic knowledge and world facts. Cost: millions in compute.</li>
-            <li><strong>SFT</strong> — Supervised fine-tuning on human-written demonstrations. Teaches the model to follow instructions and produce useful responses.</li>
-            <li><strong>RLHF / DPO</strong> — Reinforcement learning from human feedback or direct preference optimization. Aligns model outputs with human values and preferences.</li>
-            <li><strong>Continual pre-training</strong> — Domain-adaptive training on specialized corpora (code, math, scientific papers) to improve specific capabilities.</li>
-          </ul>
-          <p>
-            A less discussed fact: the <strong>data mix</strong> matters more than architecture
-            at this point. Most LLMs use nearly identical transformer stacks. The
-            differentiation comes from data curation, filtering, deduplication, and
-            the precise ratios of different data sources.
-          </p>
-        </div>
-
-        <div class="kp-divider">◆ ◆ ◆</div>
-
-        <div class="kp-section">
-          <h2>III. Inference &amp; Reasoning</h2>
-          <p>
-            LLMs reason through <strong>auto-regressive decoding</strong> — generating one token
-            at a time conditioned on all previous tokens. This process is fundamentally
-            sequential and computationally expensive. Key techniques:
-          </p>
-          <ul>
-            <li><strong>Chain-of-Thought</strong> — Intermediate reasoning steps before the final answer. Dramatically improves performance on math, logic, and multi-step tasks.</li>
-            <li><strong>Scaffolding / Agents</strong> — LLMs augmented with tools (code execution, search, APIs). The model plans, executes actions, observes results, and iterates.</li>
-            <li><strong>Speculative Decoding</strong> — Using a draft model to propose tokens, then verifying with the target model. 2-3x speedup without quality loss.</li>
-            <li><strong>KV-Cache</strong> — Caching key-value projections from previous tokens. Essential for efficient generation but memory-intensive for long contexts.</li>
+            <li><strong>Model</strong> — DeepSeek V4 Pro</li>
+            <li><strong>Parameters</strong> — 1.6T total (MoE), 49B active per token</li>
+            <li><strong>Training tokens</strong> — 32T+</li>
+            <li><strong>Token-to-parameter ratio</strong> — 32T / 1.6T = <strong>20:1</strong></li>
+            <li><strong>FLOPs per param per token</strong> — 6 (forward ×1 + backward ×2 + weight update ×2)</li>
+            <li><strong>Total training FLOPs</strong> — 6 × 1.6×10¹² × 32×10¹² = <strong>3.07×10²⁶</strong> (307 YottaFLOPs)</li>
           </ul>
         </div>
 
-        <div class="kp-divider">◆ ◆ ◆</div>
+        <div class="kp-divider">━ ━ ━</div>
 
         <div class="kp-section">
-          <h2>IV. My Research Perspective</h2>
-          <p>
-            My work has focused on three axes of LLM capability:
-          </p>
+          <h2>II. Compute Estimate (H200-equivalent)</h2>
+
+          <p><strong>Per H200 GPU:</strong></p>
           <ul>
-            <li><strong>Modularity &amp; Structure</strong> — Breaking generation into reusable sub-modules (CodeChain). Structured outputs for evaluating reasoning (StructTest). Label modular prompts for controllable text classification.</li>
-            <li><strong>Distillation &amp; Efficiency</strong> — Personalized distillation adapts large models to specific code generation tasks while keeping the student small and local. The question of whether open-source models can catch up to proprietary ones.</li>
-            <li><strong>Reliability &amp; Trust</strong> — RAG for factual grounding, contamination detection in evaluation benchmarks, and faithful generation. Before we trust LLMs with critical decisions, we need to understand their failure modes.</li>
+            <li>Peak (FP8 Tensor Core): ~3,958 TFLOPS</li>
+            <li>Expected MFU @ scale: ~40%</li>
+            <li>Effective throughput: ~1,583 TFLOPS</li>
+          </ul>
+
+          <p><strong>Total training cost:</strong></p>
+          <ul>
+            <li>3.07×10²⁶ FLOPs ÷ 1.58×10¹⁵ FLOP/s/GPU = 1.94×10¹¹ s/GPU = <strong>~54M GPU-hours</strong></li>
+            <li>At 100K H200 cluster: 54M ÷ 100K = <strong>~540 hours (~23 days)</strong> wall time</li>
+            <li>At $3/GPU-hr (estimated): ~$162M training run</li>
+          </ul>
+        </div>
+
+        <div class="kp-divider">━ ━ ━</div>
+
+        <div class="kp-section">
+          <h2>III. Efficiency Reference Points</h2>
+          <ul>
+            <li><strong>LLaMA 3 70B</strong> — ~2T tokens, ratio ~28:1 (slightly overtrained)</li>
+            <li><strong>LLaMA 3 405B</strong> — ~15T tokens, ratio ~37:1 (significantly overtrained)</li>
+            <li><strong>DeepSeek V2 236B</strong> — ~8T tokens, ratio ~34:1</li>
+            <li><strong>DeepSeek V4 Pro 1.6T</strong> — ~32T tokens, ratio ~20:1</li>
+            <li><strong>Gemini 1.5 Pro</strong> — est. 10T+ tokens, ~250B active</li>
           </ul>
           <p>
-            The open question that drives me: <strong>Can we make LLMs reason like humans —
-            not just pattern-match, but truly generalize?</strong> The answer likely involves
-            architectures beyond pure next-token prediction, combined with more sophisticated
-            training signals than next-token likelihood.
+            The trend: leading labs push token-to-parameter ratios well beyond 20:1.
+            The practical limit is data quality, not compute.
           </p>
         </div>
 
-        <div class="kp-divider">◆ ◆ ◆</div>
+        <div class="kp-divider">━ ━ ━</div>
 
         <div class="kp-section">
-          <h2>V. What I'm Watching</h2>
+          <h2>IV. MoE Inference Advantage</h2>
           <ul>
-            <li><strong>Long-context models</strong> — 1M+ token contexts (Gemini, Claude) change what's possible. The limit shifts from "can the model remember" to "can the model find the signal in the noise."</li>
-            <li><strong>Test-time compute scaling</strong> — o1-like models that spend more compute at inference time for harder problems. Reasoning as a budget you can allocate.</li>
-            <li><strong>Multi-modal grounding</strong> — Connecting language to vision, audio, code execution. The next frontier is agents that interact with the real world.</li>
-            <li><strong>Small models</strong> — 1-8B parameter models that run on-device. The race isn't just about bigger — it's about smarter per parameter.</li>
+            <li><strong>FLOPs per output token (dense):</strong> 2 × N</li>
+            <li><strong>FLOPs per output token (MoE):</strong> 2 × N_active</li>
+            <li><strong>DS V4 Pro inference:</strong> 2 × 49B = 98 GFLOPs/token</li>
+            <li><strong>Equivalent dense (est. 1.8T):</strong> 2 × 1.8T = 3.6 TFLOPs/token</li>
+            <li><strong>MoE advantage:</strong> ~37× cheaper per inference token</li>
           </ul>
         </div>
 
