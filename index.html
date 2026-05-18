@@ -24,6 +24,53 @@
     h2:first-of-type { margin-top: 0; }
     hr { border: 0; border-top: 1px solid #e8e8e8; margin: 1.5em 0; }
 
+    /* ── Navigation ── */
+    .top-nav {
+      background: #1a1a2e;
+      border-bottom: 3px solid #e94560;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .top-nav .inner {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 2em;
+    }
+    .top-nav .site-title {
+      font-size: 1em;
+      font-weight: 700;
+      color: #eee;
+      padding: 0.7em 0;
+    }
+    .top-nav .site-title a { color: #eee; }
+    .top-nav .site-title a:hover { text-decoration: none; }
+    .nav-tabs { display: flex; gap: 0; }
+    .nav-tab {
+      padding: 0.7em 1.2em;
+      font-size: 0.78em;
+      font-weight: 600;
+      color: #999;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -3px;
+      transition: all 0.15s;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .nav-tab:hover { color: #ddd; }
+    .nav-tab.active {
+      color: #fff;
+      border-bottom-color: #e94560;
+    }
+    @media (max-width: 37.5em) {
+      .top-nav .inner { gap: 1em; }
+      .nav-tab { padding: 0.7em 0.8em; font-size: 0.7em; }
+    }
+
     .wrapper {
       max-width: 1050px;
       margin: 0 auto;
@@ -93,6 +140,10 @@
       padding: 2em 0 3em;
     }
 
+    /* ── Tab Content ── */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
     .page__title {
       font-size: 1.4em;
       margin-bottom: 0.8em;
@@ -151,17 +202,140 @@
     .exp-title { font-weight: 600; }
     .exp-org { color: #555; }
     .exp-date { color: #888; font-size: 0.88em; float: right; }
-    .exp-desc { color: #444; font-size: 0.92em; margin-top: 0.2em; padding-left: 0; list-style: none; }
-    .exp-desc li { margin-bottom: 0.15em; position: relative; padding-left: 1em; }
-    .exp-desc li::before { content: "•"; position: absolute; left: 0; color: #2c7a99; }
 
     .edu-item { font-size: 0.88em; margin-bottom: 0.8em; }
     .edu-school { font-weight: 600; }
     .edu-detail { color: #555; }
     .edu-gpa { color: #888; }
+
+    /* ═══════════════════════════════
+       AOT / KNOWLEDGE TAB STYLES
+       ═══════════════════════════════ */
+    .knowledge-page {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      color: #c8c8c8;
+      background: #0d0d1a;
+      margin: -2em -20px -3em;
+      padding: 2em 20px 3em;
+    }
+    @media (min-width: 57.8125em) {
+      .knowledge-page {
+        margin: -2em 0 -3em;
+        padding: 2em 30px 3em;
+      }
+    }
+
+    .knowledge-page .kp-header {
+      text-align: center;
+      border-bottom: 2px solid #e94560;
+      padding-bottom: 1.5em;
+      margin-bottom: 2em;
+    }
+    .knowledge-page .kp-classified {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.6em;
+      color: #e94560;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 0.5em;
+    }
+    .knowledge-page .kp-title {
+      font-size: 1.1em;
+      color: #f0e6d0;
+      font-weight: 400;
+      letter-spacing: 1px;
+      margin-bottom: 0.5em;
+      line-height: 1.4;
+    }
+    .knowledge-page .kp-subtitle {
+      font-size: 0.72em;
+      color: #887;
+      font-style: italic;
+    }
+
+    .knowledge-page .kp-section {
+      max-width: 720px;
+      margin: 0 auto 2.5em;
+    }
+    .knowledge-page .kp-section h2 {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      font-size: 1em;
+      color: #e94560;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 0;
+      margin-bottom: 0.8em;
+      border-bottom: 1px solid #333;
+      padding-bottom: 0.3em;
+    }
+    .knowledge-page .kp-section p {
+      font-size: 0.82em;
+      line-height: 1.8;
+      color: #b0ada8;
+      margin-bottom: 1em;
+    }
+    .knowledge-page .kp-section p strong {
+      color: #f0e6d0;
+    }
+    .knowledge-page .kp-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    .knowledge-page .kp-section ul li {
+      font-size: 0.82em;
+      line-height: 1.7;
+      color: #b0ada8;
+      padding-left: 1.5em;
+      position: relative;
+      margin-bottom: 0.5em;
+    }
+    .knowledge-page .kp-section ul li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: #e94560;
+    }
+    .knowledge-page .kp-section ul li strong {
+      color: #f0e6d0;
+    }
+    .knowledge-page .kp-divider {
+      text-align: center;
+      color: #333;
+      font-size: 0.7em;
+      letter-spacing: 5px;
+      margin: 2em auto;
+    }
+    .knowledge-page .kp-disclaimer {
+      text-align: center;
+      font-size: 0.65em;
+      color: #554;
+      font-style: italic;
+      font-family: "Courier New", Courier, monospace;
+      border-top: 1px solid #222;
+      padding-top: 1.5em;
+      margin-top: 2em;
+    }
+
+    @media (max-width: 57.8125em) {
+      .knowledge-page .kp-title { font-size: 0.95em; }
+      .knowledge-page .kp-section p,
+      .knowledge-page .kp-section ul li { font-size: 0.78em; }
+    }
   </style>
 </head>
 <body>
+
+  <!-- ═══════ NAVIGATION ═══════ -->
+  <nav class="top-nav">
+    <div class="inner">
+      <div class="site-title"><a href="#">Hailin Chen</a></div>
+      <div class="nav-tabs">
+        <div class="nav-tab active" data-tab="about">About</div>
+        <div class="nav-tab" data-tab="knowledge">Knowledge</div>
+      </div>
+    </div>
+  </nav>
 
 <div class="wrapper">
 
@@ -188,147 +362,258 @@
   <!-- ═══════ MAIN ═══════ -->
   <main class="main">
 
-    <h1 class="page__title">About</h1>
+    <!-- ─── ABOUT TAB ─── -->
+    <div class="tab-content active" id="tab-about">
 
-    <p>
-      I am a researcher working on <strong>Large Language Models</strong> and
-      <strong>LLM agents</strong>. I'm currently a Quantitative Researcher at
-      <strong>Susquehanna International Group</strong>.
-    </p>
+      <h1 class="page__title">About</h1>
 
-    <p>
-      I received my Ph.D. in Computer Science from Nanyang Technological University
-      (NTU), advised by <a href="https://raihanjoty.github.io/" target="_blank">Shafiq Joty</a>.
-      My research spans code generation, modular prompting, knowledge distillation,
-      and benchmarking LLM reasoning.
-    </p>
+      <p>
+        I am a researcher working on <strong>Large Language Models</strong> and
+        <strong>LLM agents</strong>. I'm currently a Quantitative Researcher at
+        <strong>Susquehanna International Group</strong>.
+      </p>
 
-    <p>
-      Previously, I worked at <strong>Salesforce Research</strong>, <strong>YITU</strong> and
-      <strong>Microsoft Research</strong>.
-    </p>
+      <p>
+        I received my Ph.D. in Computer Science from Nanyang Technological University
+        (NTU), advised by <a href="https://raihanjoty.github.io/" target="_blank">Shafiq Joty</a>.
+        My research spans code generation, modular prompting, knowledge distillation,
+        and benchmarking LLM reasoning.
+      </p>
 
-    <h2>📰 News</h2>
-    <hr>
-    <ul class="news-list">
-      <li><span class="news-date">[Feb 2025]</span> Joined Susquehanna International Group (SIG) as a Quantitative Researcher.</li>
-      <li><span class="news-date">[Jan 2025]</span> Successfully defended my Ph.D. thesis on locally trainable large language models.</li>
-      <li><span class="news-date">[Jun 2024]</span> Started as Research Scientist at Salesforce Research.</li>
-      <li><span class="news-date">[Jan 2024]</span> <a href="https://arxiv.org/abs/2310.08992" target="_blank">CodeChain</a> accepted at ICLR 2024.</li>
-      <li><span class="news-date">[2023]</span> Three papers accepted: <a href="https://arxiv.org/abs/2303.10868" target="_blank">Multimodal RAG Survey</a> (EMNLP Findings), <a href="https://arxiv.org/abs/2308.03117" target="_blank">Personalized Distillation</a> (EMNLP), and ChatGPT Survey (arXiv).</li>
+      <p>
+        Previously, I worked at <strong>Salesforce Research</strong>, <strong>YITU</strong> and
+        <strong>Microsoft Research</strong>.
+      </p>
 
-    </ul>
+      <h2>📰 News</h2>
+      <hr>
+      <ul class="news-list">
+        <li><span class="news-date">[Feb 2025]</span> Joined Susquehanna International Group (SIG) as a Quantitative Researcher.</li>
+        <li><span class="news-date">[Jan 2025]</span> Successfully defended my Ph.D. thesis on locally trainable large language models.</li>
+        <li><span class="news-date">[Jun 2024]</span> Started as Research Scientist at Salesforce Research.</li>
+        <li><span class="news-date">[Jan 2024]</span> <a href="https://arxiv.org/abs/2310.08992" target="_blank">CodeChain</a> accepted at ICLR 2024.</li>
+        <li><span class="news-date">[2023]</span> Three papers accepted: <a href="https://arxiv.org/abs/2303.10868" target="_blank">Multimodal RAG Survey</a> (EMNLP Findings), <a href="https://arxiv.org/abs/2308.03117" target="_blank">Personalized Distillation</a> (EMNLP), and ChatGPT Survey (arXiv).</li>
+      </ul>
 
-    <h2>💼 Experience</h2>
-    <hr>
+      <h2>💼 Experience</h2>
+      <hr>
 
-    <div class="exp-item">
-      <span class="exp-date">Feb 2025 – Present</span>
-      <div class="exp-title">Quantitative Researcher</div>
-      <div class="exp-org">Susquehanna International Group (SIG)</div>
-    </div>
-
-    <div class="exp-item">
-      <span class="exp-date">Jun 2024 – Dec 2024</span>
-      <div class="exp-title">Research Scientist</div>
-      <div class="exp-org">Salesforce Research</div>
-    </div>
-
-    <div class="exp-item">
-      <span class="exp-date">Jan 2021 – May 2024</span>
-      <div class="exp-title">Industrial PhD Trainee</div>
-      <div class="exp-org">Salesforce Research</div>
-    </div>
-
-    <div class="exp-item">
-      <span class="exp-date">Jul 2019 – Sep 2020</span>
-      <div class="exp-title">Research Developer</div>
-      <div class="exp-org">YITU Technology</div>
-    </div>
-
-    <h2>🎓 Education</h2>
-    <hr>
-
-    <div class="edu-item">
-      <div class="edu-school">Nanyang Technological University, Singapore</div>
-      <div class="edu-detail">Ph.D. in Computer Science <span class="edu-gpa">(CGPA 4.67/5.0)</span></div>
-      <div class="edu-detail" style="color:#888;">Jan 2021 – Jan 2025 · Advisor: Shafiq Joty</div>
-    </div>
-
-    <div class="edu-item">
-      <div class="edu-school">Nanyang Technological University, Singapore</div>
-      <div class="edu-detail">B.C.S. with Highest Distinction <span class="edu-gpa">(CGPA 4.63/5.0)</span></div>
-      <div class="edu-detail" style="color:#888;">Aug 2015 – May 2019</div>
-    </div>
-
-    <h2>📄 Selected Publications</h2>
-    <hr>
-
-    <div class="pub">
-      <div class="pub-title">
-        <a href="https://arxiv.org/abs/2310.08992" target="_blank">CodeChain: Towards Modular Code Generation through Chain of Self-Revisions with Representative Sub-Modules</a>
-        <span class="pub-tag tag-c">ICLR 2024</span>
+      <div class="exp-item">
+        <span class="exp-date">Feb 2025 – Present</span>
+        <div class="exp-title">Quantitative Researcher</div>
+        <div class="exp-org">Susquehanna International Group (SIG)</div>
       </div>
-      <div class="pub-authors">H. Le, <strong>H. Chen</strong>, A. Saha, A. Gokul, D. Sahoo, S. Joty</div>
-    </div>
 
-    <div class="pub">
-      <div class="pub-title">
-        <a href="https://arxiv.org/abs/2308.03117" target="_blank">Personalized Distillation: Empowering Open-Sourced LLMs with Adaptive Learning for Code Generation</a>
-        <span class="pub-tag tag-c">EMNLP 2023</span>
+      <div class="exp-item">
+        <span class="exp-date">Jun 2024 – Dec 2024</span>
+        <div class="exp-title">Research Scientist</div>
+        <div class="exp-org">Salesforce Research</div>
       </div>
-      <div class="pub-authors"><strong>H. Chen</strong>, A. Saha, S. Joty, S. Hoi</div>
-    </div>
 
-    <div class="pub">
-      <div class="pub-title">
-        <a href="https://arxiv.org/abs/2303.10868" target="_blank">Retrieving Multimodal Information for Augmented Generation: A Survey</a>
-        <span class="pub-tag tag-c">EMNLP 2023 (Findings)</span>
+      <div class="exp-item">
+        <span class="exp-date">Jan 2021 – May 2024</span>
+        <div class="exp-title">Industrial PhD Trainee</div>
+        <div class="exp-org">Salesforce Research</div>
       </div>
-      <div class="pub-authors">R. Zhao, <strong>H. Chen</strong>, W. Wang, F. Jiao, X.L. Do, C. Qin, B. Ding, X. Guo, M. Li, X. Li, S. Joty</div>
-    </div>
 
-    <div class="pub">
-      <div class="pub-title">
-        Learning Label Modular Prompts for Text Classification in the Wild
-        <span class="pub-tag tag-c">EMNLP 2022 (Oral)</span>
+      <div class="exp-item">
+        <span class="exp-date">Jul 2019 – Sep 2020</span>
+        <div class="exp-title">Research Developer</div>
+        <div class="exp-org">YITU Technology</div>
       </div>
-      <div class="pub-authors"><strong>H. Chen</strong>, A. Saha, S. Joty, S. Hoi</div>
-    </div>
 
-    <div class="pub">
-      <div class="pub-title">
-        <a href="https://arxiv.org/abs/2412.18011" target="_blank">StructTest: Benchmarking LLMs' Reasoning through Compositional Structured Outputs</a>
-        <span class="pub-tag tag-p">Preprint</span>
+      <h2>🎓 Education</h2>
+      <hr>
+
+      <div class="edu-item">
+        <div class="edu-school">Nanyang Technological University, Singapore</div>
+        <div class="edu-detail">Ph.D. in Computer Science <span class="edu-gpa">(CGPA 4.67/5.0)</span></div>
+        <div class="edu-detail" style="color:#888;">Jan 2021 – Jan 2025 · Advisor: Shafiq Joty</div>
       </div>
-      <div class="pub-authors"><strong>H. Chen</strong>*, F. Jiao*, M. Ravaut*, et al.</div>
-    </div>
 
-    <div class="pub">
-      <div class="pub-title">
-        <a href="https://arxiv.org/abs/2311.16989" target="_blank">ChatGPT's One-Year Anniversary: Are Open-Source Large Language Models Catching Up?</a>
-        <span class="pub-tag tag-p">Preprint</span>
+      <div class="edu-item">
+        <div class="edu-school">Nanyang Technological University, Singapore</div>
+        <div class="edu-detail">B.C.S. with Highest Distinction <span class="edu-gpa">(CGPA 4.63/5.0)</span></div>
+        <div class="edu-detail" style="color:#888;">Aug 2015 – May 2019</div>
       </div>
-      <div class="pub-authors"><strong>H. Chen</strong>*, F. Jiao*, X. Li*, et al.</div>
-    </div>
 
-    <div class="pub">
-      <div class="pub-title">
-        <a href="https://arxiv.org/abs/2409.09916" target="_blank">SFR-RAG: Towards Contextually Faithful LLMs</a>
-        <span class="pub-tag tag-p">Preprint</span>
+      <h2>📄 Selected Publications</h2>
+      <hr>
+
+      <div class="pub">
+        <div class="pub-title">
+          <a href="https://arxiv.org/abs/2310.08992" target="_blank">CodeChain: Towards Modular Code Generation through Chain of Self-Revisions with Representative Sub-Modules</a>
+          <span class="pub-tag tag-c">ICLR 2024</span>
+        </div>
+        <div class="pub-authors">H. Le, <strong>H. Chen</strong>, A. Saha, A. Gokul, D. Sahoo, S. Joty</div>
       </div>
-      <div class="pub-authors">X.P. Nguyen, S. Pandit, S. Purushwalkam, A. Xu, <strong>H. Chen</strong>, Y. Ming, Z. Ke, S. Savarese, C. Xiong, S. Joty</div>
-    </div>
 
-    <div class="pub">
-      <div class="pub-title">
-        A Comprehensive Survey of Contamination Detection in Large Language Models
-        <span class="pub-tag tag-j">TMLR 2025</span>
+      <div class="pub">
+        <div class="pub-title">
+          <a href="https://arxiv.org/abs/2308.03117" target="_blank">Personalized Distillation: Empowering Open-Sourced LLMs with Adaptive Learning for Code Generation</a>
+          <span class="pub-tag tag-c">EMNLP 2023</span>
+        </div>
+        <div class="pub-authors"><strong>H. Chen</strong>, A. Saha, S. Joty, S. Hoi</div>
       </div>
-      <div class="pub-authors">M. Ravaut, B. Ding, F. Jiao, <strong>H. Chen</strong>, X. Li, R. Zhao, C. Qin, C. Xiong, S. Joty</div>
+
+      <div class="pub">
+        <div class="pub-title">
+          <a href="https://arxiv.org/abs/2303.10868" target="_blank">Retrieving Multimodal Information for Augmented Generation: A Survey</a>
+          <span class="pub-tag tag-c">EMNLP 2023 (Findings)</span>
+        </div>
+        <div class="pub-authors">R. Zhao, <strong>H. Chen</strong>, W. Wang, F. Jiao, X.L. Do, C. Qin, B. Ding, X. Guo, M. Li, X. Li, S. Joty</div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-title">
+          Learning Label Modular Prompts for Text Classification in the Wild
+          <span class="pub-tag tag-c">EMNLP 2022 (Oral)</span>
+        </div>
+        <div class="pub-authors"><strong>H. Chen</strong>, A. Saha, S. Joty, S. Hoi</div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-title">
+          <a href="https://arxiv.org/abs/2412.18011" target="_blank">StructTest: Benchmarking LLMs' Reasoning through Compositional Structured Outputs</a>
+          <span class="pub-tag tag-p">Preprint</span>
+        </div>
+        <div class="pub-authors"><strong>H. Chen</strong>*, F. Jiao*, M. Ravaut*, et al.</div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-title">
+          <a href="https://arxiv.org/abs/2311.16989" target="_blank">ChatGPT's One-Year Anniversary: Are Open-Source Large Language Models Catching Up?</a>
+          <span class="pub-tag tag-p">Preprint</span>
+        </div>
+        <div class="pub-authors"><strong>H. Chen</strong>*, F. Jiao*, X. Li*, et al.</div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-title">
+          <a href="https://arxiv.org/abs/2409.09916" target="_blank">SFR-RAG: Towards Contextually Faithful LLMs</a>
+          <span class="pub-tag tag-p">Preprint</span>
+        </div>
+        <div class="pub-authors">X.P. Nguyen, S. Pandit, S. Purushwalkam, A. Xu, <strong>H. Chen</strong>, Y. Ming, Z. Ke, S. Savarese, C. Xiong, S. Joty</div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-title">
+          A Comprehensive Survey of Contamination Detection in Large Language Models
+          <span class="pub-tag tag-j">TMLR 2025</span>
+        </div>
+        <div class="pub-authors">M. Ravaut, B. Ding, F. Jiao, <strong>H. Chen</strong>, X. Li, R. Zhao, C. Qin, C. Xiong, S. Joty</div>
+      </div>
+
     </div>
 
+    <!-- ─── KNOWLEDGE TAB ─── -->
+    <div class="tab-content" id="tab-knowledge">
+      <div class="knowledge-page">
 
+        <div class="kp-header">
+          <div class="kp-classified">⏺ Publicly Available Information</div>
+          <div class="kp-title">
+            What I Know About<br>
+            Large Language Models
+          </div>
+          <div class="kp-subtitle">
+            Compiled from research, experiments, and practical experience.<br>
+            Last updated: May 2026.
+          </div>
+        </div>
+
+        <div class="kp-section">
+          <h2>I. The Transformer Architecture</h2>
+          <p>
+            At their core, LLMs are <strong>next-token predictors</strong> trained on vast
+            corpora of text. The transformer architecture — specifically the decoder-only
+            variant — uses stacked self-attention layers and feed-forward networks.
+            Attention mechanisms allow each token to "look at" every previous token,
+            building contextual representations through learned query-key-value projections.
+          </p>
+          <p>
+            The key insight: scale unlocks <strong>emergent abilities</strong> that smaller
+            models simply don't exhibit. These aren't explicitly programmed — they arise
+            from the statistics of language at scale. Instruction following, in-context
+            learning, chain-of-thought reasoning — none were designed into the architecture,
+            yet they emerge beyond certain compute thresholds.
+          </p>
+        </div>
+
+        <div class="kp-divider">◆ ◆ ◆</div>
+
+        <div class="kp-section">
+          <h2>II. Training Pipeline</h2>
+          <ul>
+            <li><strong>Pre-training</strong> — Autoregressive language modeling on trillions of tokens. This is where the model acquires linguistic knowledge and world facts. Cost: millions in compute.</li>
+            <li><strong>SFT</strong> — Supervised fine-tuning on human-written demonstrations. Teaches the model to follow instructions and produce useful responses.</li>
+            <li><strong>RLHF / DPO</strong> — Reinforcement learning from human feedback or direct preference optimization. Aligns model outputs with human values and preferences.</li>
+            <li><strong>Continual pre-training</strong> — Domain-adaptive training on specialized corpora (code, math, scientific papers) to improve specific capabilities.</li>
+          </ul>
+          <p>
+            A less discussed fact: the <strong>data mix</strong> matters more than architecture
+            at this point. Most LLMs use nearly identical transformer stacks. The
+            differentiation comes from data curation, filtering, deduplication, and
+            the precise ratios of different data sources.
+          </p>
+        </div>
+
+        <div class="kp-divider">◆ ◆ ◆</div>
+
+        <div class="kp-section">
+          <h2>III. Inference &amp; Reasoning</h2>
+          <p>
+            LLMs reason through <strong>auto-regressive decoding</strong> — generating one token
+            at a time conditioned on all previous tokens. This process is fundamentally
+            sequential and computationally expensive. Key techniques:
+          </p>
+          <ul>
+            <li><strong>Chain-of-Thought</strong> — Intermediate reasoning steps before the final answer. Dramatically improves performance on math, logic, and multi-step tasks.</li>
+            <li><strong>Scaffolding / Agents</strong> — LLMs augmented with tools (code execution, search, APIs). The model plans, executes actions, observes results, and iterates.</li>
+            <li><strong>Speculative Decoding</strong> — Using a draft model to propose tokens, then verifying with the target model. 2-3x speedup without quality loss.</li>
+            <li><strong>KV-Cache</strong> — Caching key-value projections from previous tokens. Essential for efficient generation but memory-intensive for long contexts.</li>
+          </ul>
+        </div>
+
+        <div class="kp-divider">◆ ◆ ◆</div>
+
+        <div class="kp-section">
+          <h2>IV. My Research Perspective</h2>
+          <p>
+            My work has focused on three axes of LLM capability:
+          </p>
+          <ul>
+            <li><strong>Modularity &amp; Structure</strong> — Breaking generation into reusable sub-modules (CodeChain). Structured outputs for evaluating reasoning (StructTest). Label modular prompts for controllable text classification.</li>
+            <li><strong>Distillation &amp; Efficiency</strong> — Personalized distillation adapts large models to specific code generation tasks while keeping the student small and local. The question of whether open-source models can catch up to proprietary ones.</li>
+            <li><strong>Reliability &amp; Trust</strong> — RAG for factual grounding, contamination detection in evaluation benchmarks, and faithful generation. Before we trust LLMs with critical decisions, we need to understand their failure modes.</li>
+          </ul>
+          <p>
+            The open question that drives me: <strong>Can we make LLMs reason like humans —
+            not just pattern-match, but truly generalize?</strong> The answer likely involves
+            architectures beyond pure next-token prediction, combined with more sophisticated
+            training signals than next-token likelihood.
+          </p>
+        </div>
+
+        <div class="kp-divider">◆ ◆ ◆</div>
+
+        <div class="kp-section">
+          <h2>V. What I'm Watching</h2>
+          <ul>
+            <li><strong>Long-context models</strong> — 1M+ token contexts (Gemini, Claude) change what's possible. The limit shifts from "can the model remember" to "can the model find the signal in the noise."</li>
+            <li><strong>Test-time compute scaling</strong> — o1-like models that spend more compute at inference time for harder problems. Reasoning as a budget you can allocate.</li>
+            <li><strong>Multi-modal grounding</strong> — Connecting language to vision, audio, code execution. The next frontier is agents that interact with the real world.</li>
+            <li><strong>Small models</strong> — 1-8B parameter models that run on-device. The race isn't just about bigger — it's about smarter per parameter.</li>
+          </ul>
+        </div>
+
+        <div class="kp-disclaimer">
+          ⚠ The above represents the author's current understanding and may be incomplete.
+          LLM research advances rapidly. Last revised: May 2026.
+        </div>
+
+      </div>
+    </div>
 
   </main>
 
@@ -337,6 +622,26 @@
 <footer class="footer">
   &copy; 2026 Hailin Chen
 </footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.nav-tab');
+    const contents = {
+      about: document.getElementById('tab-about'),
+      knowledge: document.getElementById('tab-knowledge')
+    };
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        const target = this.dataset.tab;
+        tabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        Object.values(contents).forEach(c => c.classList.remove('active'));
+        if (contents[target]) contents[target].classList.add('active');
+      });
+    });
+  });
+</script>
 
 </body>
 </html>
