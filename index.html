@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hailin Chen</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; background: #fff; }
+    @media (min-width: 48em) { html { font-size: 18px; } }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #3a3f44;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    a { color: #2c7a99; text-decoration: none; }
+    a:hover { color: #1a4f66; text-decoration: underline; }
+    img { max-width: 100%; height: auto; }
+    h1, h2, h3, h4 { line-height: 1.2; font-weight: 600; }
+    h1 { font-size: 1.563em; }
+    h2 { font-size: 1.25em; margin-top: 2em; margin-bottom: 0.5em; }
+    h2:first-of-type { margin-top: 0; }
+    hr { border: 0; border-top: 1px solid #e8e8e8; margin: 1.5em 0; }
+
+    .wrapper {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      gap: 40px;
+    }
+    @media (max-width: 57.8125em) {
+      .wrapper { flex-direction: column; }
+    }
+
+    .sidebar {
+      flex: 0 0 260px;
+      padding-top: 2em;
+    }
+    @media (max-width: 57.8125em) {
+      .sidebar { flex: none; text-align: center; padding-top: 1.5em; }
+    }
+
+    .author__avatar {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1em;
+      display: block;
+    }
+    @media (max-width: 57.8125em) {
+      .author__avatar { margin: 0 auto 1em; }
+    }
+
+    .author__name {
+      font-size: 1.2em;
+      font-weight: 700;
+      margin-bottom: 0.15em;
+    }
+    .author__affiliation {
+      font-size: 0.8em;
+      color: #666;
+      margin-bottom: 0.3em;
+    }
+    .author__education {
+      font-size: 0.75em;
+      color: #777;
+      margin-bottom: 0.8em;
+    }
+    .author__bio {
+      font-size: 0.8em;
+      color: #555;
+      margin-bottom: 1em;
+    }
+
+    .sidebar-links {
+      list-style: none;
+      font-size: 0.78em;
+    }
+    .sidebar-links li { margin-bottom: 0.4em; }
+    .sidebar-links i { width: 1.2em; text-align: center; margin-right: 0.3em; color: #555; }
+    @media (max-width: 57.8125em) {
+      .sidebar-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8em; }
+      .sidebar-links li { margin-bottom: 0; }
+    }
+
+    .main {
+      flex: 1;
+      min-width: 0;
+      padding: 2em 0 3em;
+    }
+
+    .page__title {
+      font-size: 1.4em;
+      margin-bottom: 0.8em;
+      border-bottom: 2px solid #2c7a99;
+      padding-bottom: 0.3em;
+      display: inline-block;
+    }
+
+    .main p { margin-bottom: 1em; }
+
+    .news-list {
+      background: #f8fafb;
+      border-left: 4px solid #2c7a99;
+      padding: 1em 1.2em;
+      border-radius: 4px;
+      list-style: none;
+    }
+    .news-list li {
+      margin-bottom: 0.5em;
+      font-size: 0.85em;
+      line-height: 1.5;
+    }
+    .news-list li:last-child { margin-bottom: 0; }
+    .news-date { font-weight: 700; color: #2c7a99; }
+
+    .footer {
+      text-align: center;
+      padding: 1.5em 20px;
+      font-size: 0.72em;
+      color: #999;
+      border-top: 1px solid #e8e8e8;
+      max-width: 1050px;
+      margin: 0 auto;
+    }
+
+    .pub {
+      margin-bottom: 1em;
+      font-size: 0.88em;
+    }
+    .pub-title { font-weight: 600; }
+    .pub-authors { color: #555; font-size: 0.92em; }
+    .pub-venue { color: #666; font-style: italic; font-size: 0.92em; }
+    .pub-tag {
+      display: inline-block;
+      font-size: 0.72em;
+      font-weight: 600;
+      padding: 0.1em 0.5em;
+      border-radius: 3px;
+      margin-left: 0.3em;
+    }
+    .tag-c { background: #2c7a99; color: #fff; }
+    .tag-j { background: #7a5c3a; color: #fff; }
+    .tag-p { background: #994422; color: #fff; }
+
+    .exp-item { margin-bottom: 1em; font-size: 0.88em; }
+    .exp-title { font-weight: 600; }
+    .exp-org { color: #555; }
+    .exp-date { color: #888; font-size: 0.88em; float: right; }
+    .exp-desc { color: #444; font-size: 0.92em; margin-top: 0.2em; padding-left: 0; list-style: none; }
+    .exp-desc li { margin-bottom: 0.15em; position: relative; padding-left: 1em; }
+    .exp-desc li::before { content: "•"; position: absolute; left: 0; color: #2c7a99; }
+
+    .edu-item { font-size: 0.88em; margin-bottom: 0.8em; }
+    .edu-school { font-weight: 600; }
+    .edu-detail { color: #555; }
+    .edu-gpa { color: #888; }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <aside class="sidebar">
+    <img
+      src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&amp;user=oE4KrU0AAAAJ&amp;citpid=1"
+      alt="Hailin Chen"
+      class="author__avatar"
+      onerror="this.style.display='none'"
+    >
+    <div class="author__name">Hailin Chen</div>
+    <div class="author__affiliation">Quantitative Researcher @ SIG</div>
+    <div class="author__education">PhD CS, Nanyang Technological University</div>
+    <div class="author__bio">LLMs · Agents · Reasoning · Code</div>
+
+    <ul class="sidebar-links">
+      <li><i class="fas fa-fw fa-map-marker-alt"></i> Singapore</li>
+      <li><i class="fas fa-fw fa-envelope"></i> <a href="mailto:chenhailin2@gmail.com">chenhailin2@gmail.com</a></li>
+      <li><i class="fab fa-fw fa-google-scholar"></i> <a href="https://scholar.google.com/citations?user=oE4KrU0AAAAJ&hl=en" target="_blank">Google Scholar</a></li>
+    </ul>
+  </aside>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <main class="main">
+
+    <h1 class="page__title">About</h1>
+
+    <p>
+      I am a researcher and engineer working on <strong>Large Language Models</strong>,
+      <strong>LLM agents</strong>, and their applications. I'm currently a Quantitative
+      Researcher at <strong>SIG</strong>, where I apply LLMs to financial signals and
+      optimize low-latency trading strategies.
+    </p>
+
+    <p>
+      I received my Ph.D. in Computer Science from Nanyang Technological University
+      (NTU), advised by <a href="https://raihanjoty.github.io/" target="_blank">Shafiq Joty</a>.
+      My research spans code generation, modular prompting, knowledge distillation,
+      and benchmarking LLM reasoning. I also hold a BCS (Highest Distinction) from NTU.
+    </p>
+
+    <p>
+      Previously, I was at <strong>Salesforce Research</strong> (Research Scientist &amp;
+      Industrial PhD Trainee), <strong>YITU Technology</strong> (Research Developer), and
+      <strong>Microsoft Research</strong> (Research Intern). My work has been published at
+      ICLR, EMNLP, and other venues.
+    </p>
+
+    <h2>📰 News</h2>
+    <hr>
+    <ul class="news-list">
+      <li><span class="news-date">[Feb 2025]</span> Joined Susquehanna International Group (SIG) as a Quantitative Researcher.</li>
+      <li><span class="news-date">[Jan 2025]</span> Successfully defended my Ph.D. thesis on locally trainable large language models.</li>
+      <li><span class="news-date">[Jun 2024]</span> Started as Research Scientist at Salesforce Research.</li>
+      <li><span class="news-date">[Jan 2024]</span> <a href="https://arxiv.org/abs/2310.08992" target="_blank">CodeChain</a> accepted at ICLR 2024.</li>
+      <li><span class="news-date">[2023]</span> Three papers accepted: <a href="https://arxiv.org/abs/2303.10868" target="_blank">Multimodal RAG Survey</a> (EMNLP Findings), <a href="https://arxiv.org/abs/2308.03117" target="_blank">Personalized Distillation</a> (EMNLP), and ChatGPT Survey (arXiv).</li>
+      <li><span class="news-date">[2021]</span> Awarded Salesforce-NTU Talent Programme grant (340K SGD) and started Industrial PhD at Salesforce.</li>
+    </ul>
+
+    <h2>💼 Experience</h2>
+    <hr>
+
+    <div class="exp-item">
+      <span class="exp-date">Feb 2025 – Present</span>
+      <div class="exp-title">Quantitative Researcher</div>
+      <div class="exp-org">Susquehanna International Group (SIG)</div>
+      <ul class="exp-desc">
+        <li>News signal research using LLMs</li>
+        <li>Low-latency strategy optimization for options trading</li>
+        <li>ETF live creation/redemption tracking (SSE)</li>
+        <li>Spot signals from options in NSE</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <span class="exp-date">Jun 2024 – Dec 2024</span>
+      <div class="exp-title">Research Scientist</div>
+      <div class="exp-org">Salesforce Research</div>
+      <ul class="exp-desc">
+        <li>Agentic and CRM Trust &amp; Safety evaluation for LLM benchmark</li>
+        <li>RAG evaluation and contextual LLM for retrieval-based chatbot</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <span class="exp-date">Jan 2021 – May 2024</span>
+      <div class="exp-title">Industrial PhD Trainee</div>
+      <div class="exp-org">Salesforce Research — mentored by Shafiq Joty, Amrita Saha, Steven Hoi</div>
+      <ul class="exp-desc">
+        <li>Research on LLM modularity, distillation, and agentic behaviors</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <span class="exp-date">Jul 2019 – Sep 2020</span>
+      <div class="exp-title">Research Developer</div>
+      <div class="exp-org">YITU Technology — mentored by Xulei Yang, Shuicheng Yan</div>
+      <ul class="exp-desc">
+        <li>Led a team of 3 NLP developers on chatbot and NLP for Education products (Top Performance Rating)</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <span class="exp-date">Dec 2017 – Jun 2018</span>
+      <div class="exp-title">Research Intern</div>
+      <div class="exp-org">Microsoft Research — mentored by Chin-Yew Lin</div>
+      <ul class="exp-desc">
+        <li>Data-to-text generation with focus on data fidelity</li>
+      </ul>
+    </div>
+
+    <h2>🎓 Education</h2>
+    <hr>
+
+    <div class="edu-item">
+      <div class="edu-school">Nanyang Technological University, Singapore</div>
+      <div class="edu-detail">Ph.D. in Computer Science <span class="edu-gpa">(CGPA 4.67/5.0)</span></div>
+      <div class="edu-detail" style="color:#888;">Jan 2021 – Jan 2025 · Advisor: Shafiq Joty</div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-school">Nanyang Technological University, Singapore</div>
+      <div class="edu-detail">B.C.S. with Highest Distinction <span class="edu-gpa">(CGPA 4.63/5.0)</span></div>
+      <div class="edu-detail" style="color:#888;">Aug 2015 – May 2019</div>
+    </div>
+
+    <h2>📄 Selected Publications</h2>
+    <hr>
+
+    <div class="pub">
+      <div class="pub-title">
+        <a href="https://arxiv.org/abs/2310.08992" target="_blank">CodeChain: Towards Modular Code Generation through Chain of Self-Revisions with Representative Sub-Modules</a>
+        <span class="pub-tag tag-c">ICLR 2024</span>
+      </div>
+      <div class="pub-authors">H. Le, <strong>H. Chen</strong>, A. Saha, A. Gokul, D. Sahoo, S. Joty</div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title">
+        <a href="https://arxiv.org/abs/2308.03117" target="_blank">Personalized Distillation: Empowering Open-Sourced LLMs with Adaptive Learning for Code Generation</a>
+        <span class="pub-tag tag-c">EMNLP 2023</span>
+      </div>
+      <div class="pub-authors"><strong>H. Chen</strong>, A. Saha, S. Joty, S. Hoi</div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title">
+        <a href="https://arxiv.org/abs/2303.10868" target="_blank">Retrieving Multimodal Information for Augmented Generation: A Survey</a>
+        <span class="pub-tag tag-c">EMNLP 2023 (Findings)</span>
+      </div>
+      <div class="pub-authors">R. Zhao, <strong>H. Chen</strong>, W. Wang, F. Jiao, X.L. Do, C. Qin, B. Ding, X. Guo, M. Li, X. Li, S. Joty</div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title">
+        Learning Label Modular Prompts for Text Classification in the Wild
+        <span class="pub-tag tag-c">EMNLP 2022 (Oral)</span>
+      </div>
+      <div class="pub-authors"><strong>H. Chen</strong>, A. Saha, S. Joty, S. Hoi</div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title">
+        <a href="https://arxiv.org/abs/2412.18011" target="_blank">StructTest: Benchmarking LLMs' Reasoning through Compositional Structured Outputs</a>
+        <span class="pub-tag tag-p">Preprint</span>
+      </div>
+      <div class="pub-authors"><strong>H. Chen</strong>*, F. Jiao*, M. Ravaut*, et al.</div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title">
+        <a href="https://arxiv.org/abs/2311.16989" target="_blank">ChatGPT's One-Year Anniversary: Are Open-Source Large Language Models Catching Up?</a>
+        <span class="pub-tag tag-p">Preprint</span>
+      </div>
+      <div class="pub-authors"><strong>H. Chen</strong>*, F. Jiao*, X. Li*, et al.</div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title">
+        <a href="https://arxiv.org/abs/2409.09916" target="_blank">SFR-RAG: Towards Contextually Faithful LLMs</a>
+        <span class="pub-tag tag-p">Preprint</span>
+      </div>
+      <div class="pub-authors">X.P. Nguyen, S. Pandit, S. Purushwalkam, A. Xu, <strong>H. Chen</strong>, Y. Ming, Z. Ke, S. Savarese, C. Xiong, S. Joty</div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title">
+        A Comprehensive Survey of Contamination Detection in Large Language Models
+        <span class="pub-tag tag-j">TMLR 2025</span>
+      </div>
+      <div class="pub-authors">M. Ravaut, B. Ding, F. Jiao, <strong>H. Chen</strong>, X. Li, R. Zhao, C. Qin, C. Xiong, S. Joty</div>
+    </div>
+
+    <h2>📜 Patents</h2>
+    <hr>
+    <ul class="news-list" style="font-size:0.82em;">
+      <li>H. Le, <strong>H. Chen</strong>, A. Saha, A. Gokul, D. Sahoo, S. Joty — <em>Systems and methods for iterative code generation with LLMs</em> (US20250103300A1)</li>
+      <li><strong>H. Chen</strong>, A. Saha, S. Hoi, S. Joty — <em>Systems and methods for training a language model for code generation</em> (US20240428079A1)</li>
+      <li><strong>H. Chen</strong>, A. Saha, S. Joty, S. Hoi — <em>Systems and methods for in-context learning using small-scale language models</em> (US20240249077A1)</li>
+      <li><strong>H. Chen</strong>, A. Saha, S. Joty, S. Hoi — <em>Systems and methods for text classification using label modular prompts</em> (US20230419049A1)</li>
+    </ul>
+
+    <h2>🏆 Awards &amp; Service</h2>
+    <hr>
+    <ul class="news-list" style="font-size:0.82em;">
+      <li><strong>Salesforce-NTU Talent Programme</strong> (340K SGD) — 2021</li>
+      <li><strong>Nanyang Award for Teamwork</strong> — 2018</li>
+      <li><strong>First Place</strong>, SC17 Student Cluster Competition — 2017</li>
+      <li><strong>Singapore National Tuition Grand Scholarship</strong> (192K SGD) — 2015</li>
+      <li><strong>NTU Science &amp; Technology Scholarship</strong> (80K SGD) — 2015</li>
+      <li>Reviewer: ACL ARR, ICLR, ICML, NeurIPS, IJCAI, COLM, IEEE TNNLS, SIGDIAL</li>
+    </ul>
+
+  </main>
+
+</div>
+
+<footer class="footer">
+  &copy; 2026 Hailin Chen
+</footer>
+
+</body>
+</html>
