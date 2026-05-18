@@ -216,112 +216,146 @@
     /* ═══════════════════════════════
        AOT / KNOWLEDGE TAB STYLES
        ═══════════════════════════════ */
+    /* ═══════════════════════════════
+       KNOWLEDGE TAB — AoT STYLE
+       ═══════════════════════════════ */
     .knowledge-page {
-      font-family: Georgia, "Times New Roman", Times, serif;
-      color: #c8c8c8;
+      font-family: Georgia, "Times New Roman", serif;
+      color: #2c2c1e;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3em 20px;
     }
-    .knowledge-page .kp-body {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 2em 20px 3em;
+    .knowledge-page .kp-scroll {
+      width: 100%;
     }
 
+    /* ── Parchment card ── */
+    .knowledge-page .kp-card {
+      max-width: 750px;
+      margin: 0 auto;
+      background: #f5edd6;
+      background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(210,180,140,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(210,180,140,0.15) 0%, transparent 50%),
+        repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(139,119,80,0.04) 40px, rgba(139,119,80,0.04) 41px, transparent 41px);
+      border: 3px solid #8b7750;
+      outline: 1px solid #c4a97a;
+      outline-offset: -6px;
+      padding: 2.5em 2.5em 0.1em;
+      box-shadow:
+        0 0 0 1px #d4c39e,
+        inset 0 0 30px rgba(139,119,80,0.08),
+        0 4px 20px rgba(0,0,0,0.3);
+      position: relative;
+    }
+    @media (max-width: 57.8125em) {
+      .knowledge-page .kp-card { padding: 1.5em 1.5em 0.1em; }
+    }
+
+    /* ── Header ── */
     .knowledge-page .kp-header {
       text-align: center;
-      border-bottom: 2px solid #e94560;
-      padding-bottom: 1.5em;
-      margin-bottom: 2em;
+      margin-bottom: 1.5em;
     }
-    .knowledge-page .kp-classified {
-      font-family: "Courier New", Courier, monospace;
-      font-size: 0.6em;
-      color: #e94560;
-      letter-spacing: 3px;
+    .knowledge-page .kp-header-top {
+      font-family: "Courier New", "Hiragino Kaku Gothic ProN", monospace;
+      font-size: 0.55em;
+      color: #8b2211;
+      letter-spacing: 4px;
       text-transform: uppercase;
-      margin-bottom: 0.5em;
+      margin-bottom: 0.3em;
     }
     .knowledge-page .kp-title {
-      font-size: 1.1em;
-      color: #f0e6d0;
-      font-weight: 400;
-      letter-spacing: 1px;
-      margin-bottom: 0.5em;
-      line-height: 1.4;
+      font-size: 1.15em;
+      color: #3a2a0e;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 0.2em;
+      letter-spacing: 3px;
     }
-    .knowledge-page .kp-subtitle {
-      font-size: 0.72em;
-      color: #887;
+    .knowledge-page .kp-title-jp {
+      font-size: 0.7em;
+      color: #7a5c3a;
+      font-weight: 400;
+      letter-spacing: 6px;
+      margin-bottom: 0.5em;
+    }
+    .knowledge-page .kp-episode {
+      font-size: 0.65em;
+      color: #6a5a3a;
       font-style: italic;
+      display: inline-block;
+      border: 1px solid #c4a97a;
+      padding: 0.2em 1em;
+    }
+    .knowledge-page .kp-divider {
+      text-align: center;
+      margin: 1em auto;
+      color: #c4a97a;
+      font-size: 1em;
+      letter-spacing: 8px;
     }
 
+    /* ── Sections ── */
     .knowledge-page .kp-section {
-      max-width: 720px;
-      margin: 0 auto 2.5em;
+      margin-bottom: 1.8em;
     }
     .knowledge-page .kp-section h2 {
-      font-family: Georgia, "Times New Roman", Times, serif;
-      font-size: 1em;
-      color: #e94560;
-      font-weight: 400;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-top: 0;
-      margin-bottom: 0.8em;
-      border-bottom: 1px solid #333;
-      padding-bottom: 0.3em;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 0.95em;
+      color: #5a3a1a;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin: 0 0 0.5em;
+      padding: 0 0 0.3em;
+      border-bottom: 1px solid #d4c39e;
     }
     .knowledge-page .kp-section p {
-      font-size: 0.82em;
+      font-size: 0.85em;
       line-height: 1.8;
-      color: #b0ada8;
-      margin-bottom: 1em;
+      color: #3a3020;
+      margin-bottom: 0.8em;
     }
     .knowledge-page .kp-section p strong {
-      color: #f0e6d0;
+      color: #5a2a0a;
+      font-weight: 700;
     }
     .knowledge-page .kp-section ul {
       list-style: none;
       padding: 0;
+      margin: 0;
     }
     .knowledge-page .kp-section ul li {
       font-size: 0.82em;
       line-height: 1.7;
-      color: #b0ada8;
-      padding-left: 1.5em;
+      color: #3a3020;
+      padding-left: 1.8em;
       position: relative;
-      margin-bottom: 0.5em;
+      margin-bottom: 0.4em;
     }
     .knowledge-page .kp-section ul li::before {
-      content: "▸";
+      content: "◆";
       position: absolute;
-      left: 0;
-      color: #e94560;
+      left: 0.2em;
+      color: #8b7750;
+      font-size: 0.6em;
     }
     .knowledge-page .kp-section ul li strong {
-      color: #f0e6d0;
-    }
-    .knowledge-page .kp-divider {
-      text-align: center;
-      color: #333;
-      font-size: 0.7em;
-      letter-spacing: 5px;
-      margin: 2em auto;
-    }
-    .knowledge-page .kp-disclaimer {
-      text-align: center;
-      font-size: 0.65em;
-      color: #554;
-      font-style: italic;
-      font-family: "Courier New", Courier, monospace;
-      border-top: 1px solid #222;
-      padding-top: 1.5em;
-      margin-top: 2em;
+      color: #5a2a0a;
     }
 
-    @media (max-width: 57.8125em) {
-      .knowledge-page .kp-title { font-size: 0.95em; }
-      .knowledge-page .kp-section p,
-      .knowledge-page .kp-section ul li { font-size: 0.78em; }
+    .knowledge-page .kp-footer {
+      text-align: center;
+      font-size: 0.55em;
+      font-family: "Courier New", monospace;
+      color: #8b7750;
+      margin-top: 2em;
+      padding-top: 1em;
+      border-top: 1px solid #d4c39e;
+      letter-spacing: 2px;
     }
   </style>
 </head>
@@ -510,18 +544,15 @@
     <!-- ─── KNOWLEDGE TAB ─── -->
     <div class="tab-content" id="tab-knowledge">
       <div class="knowledge-page">
-      <div class="kp-body">
+        <div class="kp-scroll">
+
+        <div class="kp-card">
 
         <div class="kp-header">
-          <div class="kp-classified">⏺ Publicly Available Information</div>
-          <div class="kp-title">
-            What I Know About<br>
-            Large Language Models
-          </div>
-          <div class="kp-subtitle">
-            Compiled from research, experiments, and practical experience.<br>
-            Last updated: May 2026.
-          </div>
+          <div class="kp-header-top">⏺ Publicly Available Information</div>
+          <div class="kp-title-jp">現在公開可能な情報</div>
+          <div class="kp-title">— What I Know About Large Language Models —</div>
+          <div class="kp-episode">LLM.DOCS — Compiled May 2026</div>
         </div>
 
         <div class="kp-section">
@@ -609,12 +640,14 @@
           </ul>
         </div>
 
-        <div class="kp-disclaimer">
-          ⚠ The above represents the author's current understanding and may be incomplete.
+        <div class="kp-footer">
+          ⚠ The above represents the author's current understanding and may be incomplete.<br>
           LLM research advances rapidly. Last revised: May 2026.
         </div>
 
-      </div>
+        </div><!-- /kp-card -->
+
+      </div><!-- /kp-scroll -->
       </div>
     </div>
 
