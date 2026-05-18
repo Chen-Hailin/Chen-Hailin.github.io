@@ -8,8 +8,8 @@
   <style>
     .knowledge-mode { background: #0d0d1a; }
     .knowledge-mode .sidebar { display: none; }
-    .knowledge-mode .wrapper { display: block; }
-    .knowledge-mode .main { max-width: 100%; }
+    .knowledge-mode .wrapper { display: block; max-width: 100%; padding: 0; }
+    .knowledge-mode .main { max-width: 100%; padding: 0; }
     .knowledge-mode .footer { background: #0d0d1a; color: #555; border-color: #222; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 16px; background: #fff; }
@@ -219,7 +219,11 @@
     .knowledge-page {
       font-family: Georgia, "Times New Roman", Times, serif;
       color: #c8c8c8;
-      padding: 2em 0 3em;
+    }
+    .knowledge-page .kp-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2em 20px 3em;
     }
 
     .knowledge-page .kp-header {
@@ -506,6 +510,7 @@
     <!-- ─── KNOWLEDGE TAB ─── -->
     <div class="tab-content" id="tab-knowledge">
       <div class="knowledge-page">
+      <div class="kp-body">
 
         <div class="kp-header">
           <div class="kp-classified">⏺ Publicly Available Information</div>
@@ -609,6 +614,7 @@
           LLM research advances rapidly. Last revised: May 2026.
         </div>
 
+      </div>
       </div>
     </div>
 
