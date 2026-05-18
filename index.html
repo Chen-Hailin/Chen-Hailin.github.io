@@ -560,7 +560,7 @@
         <div class="kp-section">
           <h2>I. Basic Statistics</h2>
           <ul>
-            <li>Chinchilla law: <strong>20 tokens / param</strong> &mdash; but inference-aware scaling pushes ratio much higher [<a href="https://arxiv.org/abs/2401.00448">Sardana et al. 2024</a>; Meta researcher]</li>
+            <li>Chinchilla law: <strong>20 tokens / param</strong> &mdash; but inference-aware scaling pushes ratio much higher [<a href="https://arxiv.org/abs/2401.00448">Sardana et al. 2024</a>]</li>
             <li>DeepSeek V4 Pro: <strong>1.6T</strong> total params (49B active) &middot; <strong>32T</strong> training tokens</li>
             <li>FLOPs/param/token = <strong>6</strong> (fwd×1 + bwd×2 + wupdate×2)</li>
             <li>Total: 6 × 1.6e12 × 32e12 = <strong>3.07e26</strong> (307 YottaFLOPs)</li>
@@ -582,12 +582,13 @@
         <div class="kp-section">
           <h2>III. Ratio Reference</h2>
           <ul>
-            <li><strong>LLaMA 3 70B</strong>: 2T tokens &rarr; 28:1</li>
-            <li><strong>LLaMA 3 405B</strong>: 15T tokens &rarr; 37:1</li>
-            <li><strong>DS V2 236B</strong>: 8T tokens &rarr; 34:1</li>
+            <li><strong>Qwen 3.5 397B-A17B</strong>: ~26T tokens &rarr; ~65:1</li>
+            <li><strong>Gemma 4 26B-A4B</strong>: ~13T tokens &rarr; ~500:1**</li>
+            <li><strong>K2.5 1T-A32B</strong>: ~18T tokens &rarr; ~18:1</li>
             <li><strong>DS V4 Pro 1.6T</strong>: 32T tokens &rarr; 20:1</li>
-            <li><strong>Gemini 1.5 Pro</strong>: est. 10T+ &rarr; ~40:1 (on ~250B active)</li>
+            <li><strong>LLaMA 3 405B</strong>: 15T tokens &rarr; 37:1</li>
           </ul>
+          <p style="font-size:0.75em; color:#8b7750; margin-top:0.3em;">** Small dense model, trained far beyond Chinchilla</p>
         </div>
 
         <div class="kp-divider">━ ━ ━</div>
