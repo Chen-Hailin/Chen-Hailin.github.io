@@ -559,76 +559,48 @@
 
         <div class="kp-section">
           <h2>I. Basic Statistics</h2>
-          <p>
-            <strong>Chinchilla Law</strong> — The compute-optimal ratio for training LLMs is
-            approximately <strong>20 tokens per parameter</strong> (Hoffmann et al., 2022).
-            However, when accounting for inference cost, the optimal ratio shifts significantly
-            higher — often exceeding 100:1 — because a smaller model trained on more tokens
-            is cheaper to serve (Sardana et al., 2024; "Beyond Chinchilla-Optimal"). As
-            noted by Meta researchers, training beyond the Chinchilla point produces
-            models that are more inference-efficient, even if the training cost is higher.
-          </p>
-
           <ul>
-            <li><strong>Model</strong> — DeepSeek V4 Pro</li>
-            <li><strong>Parameters</strong> — 1.6T total (MoE), 49B active per token</li>
-            <li><strong>Training tokens</strong> — 32T+</li>
-            <li><strong>Token-to-parameter ratio</strong> — 32T / 1.6T = <strong>20:1</strong></li>
-            <li><strong>FLOPs per param per token</strong> — 6 (forward ×1 + backward ×2 + weight update ×2)</li>
-            <li><strong>Total training FLOPs</strong> — 6 × 1.6×10¹² × 32×10¹² = <strong>3.07×10²⁶</strong> (307 YottaFLOPs)</li>
+            <li>Chinchilla law: <strong>20 tokens / param</strong> &mdash; but inference-aware scaling pushes ratio much higher [<a href="https://arxiv.org/abs/2401.00448">Sardana et al. 2024</a>; Meta researcher]</li>
+            <li>DeepSeek V4 Pro: <strong>1.6T</strong> total params (49B active) &middot; <strong>32T</strong> training tokens</li>
+            <li>FLOPs/param/token = <strong>6</strong> (fwd×1 + bwd×2 + wupdate×2)</li>
+            <li>Total: 6 × 1.6e12 × 32e12 = <strong>3.07e26</strong> (307 YottaFLOPs)</li>
           </ul>
         </div>
 
         <div class="kp-divider">━ ━ ━</div>
 
         <div class="kp-section">
-          <h2>II. Compute Estimate (H200-equivalent)</h2>
-
-          <p><strong>Per H200 GPU:</strong></p>
+          <h2>II. Compute (H200-equiv)</h2>
           <ul>
-            <li>Peak (FP8 Tensor Core): ~3,958 TFLOPS</li>
-            <li>Expected MFU @ scale: ~40%</li>
-            <li>Effective throughput: ~1,583 TFLOPS</li>
-          </ul>
-
-          <p><strong>Total training cost:</strong></p>
-          <ul>
-            <li>3.07×10²⁶ FLOPs ÷ 1.58×10¹⁵ FLOP/s/GPU = 1.94×10¹¹ s/GPU = <strong>~54M GPU-hours</strong></li>
-            <li>At 100K H200 cluster: 54M ÷ 100K = <strong>~540 hours (~23 days)</strong> wall time</li>
-            <li>At $3/GPU-hr (estimated): ~$162M training run</li>
+            <li>H200 FP8 peak: 3,958 TFLOPS &middot; MFU @ scale ≈ 40% &rarr; ~1,583 eff TFLOPS</li>
+            <li><strong>~54M GPU-hours</strong> &middot; 100K H200 &rarr; <strong>~23 days</strong> &middot; ~$162M (@ $3/GPU-hr)</li>
           </ul>
         </div>
 
         <div class="kp-divider">━ ━ ━</div>
 
         <div class="kp-section">
-          <h2>III. Efficiency Reference Points</h2>
+          <h2>III. Ratio Reference</h2>
           <ul>
-            <li><strong>LLaMA 3 70B</strong> — ~2T tokens, ratio ~28:1 (slightly overtrained)</li>
-            <li><strong>LLaMA 3 405B</strong> — ~15T tokens, ratio ~37:1 (significantly overtrained)</li>
-            <li><strong>DeepSeek V2 236B</strong> — ~8T tokens, ratio ~34:1</li>
-            <li><strong>DeepSeek V4 Pro 1.6T</strong> — ~32T tokens, ratio ~20:1</li>
-            <li><strong>Gemini 1.5 Pro</strong> — est. 10T+ tokens, ~250B active</li>
+            <li><strong>LLaMA 3 70B</strong>: 2T tokens &rarr; 28:1</li>
+            <li><strong>LLaMA 3 405B</strong>: 15T tokens &rarr; 37:1</li>
+            <li><strong>DS V2 236B</strong>: 8T tokens &rarr; 34:1</li>
+            <li><strong>DS V4 Pro 1.6T</strong>: 32T tokens &rarr; 20:1</li>
+            <li><strong>Gemini 1.5 Pro</strong>: est. 10T+ &rarr; ~40:1 (on ~250B active)</li>
           </ul>
-          <p>
-            The trend: leading labs push token-to-parameter ratios well beyond 20:1.
-            The practical limit is data quality, not compute.
-          </p>
         </div>
 
         <div class="kp-divider">━ ━ ━</div>
 
         <div class="kp-section">
-          <h2>IV. MoE Inference Advantage</h2>
+          <h2>IV. MoE Inference</h2>
           <ul>
-            <li><strong>FLOPs per output token (dense):</strong> 2 × N</li>
-            <li><strong>FLOPs per output token (MoE):</strong> 2 × N_active</li>
-            <li><strong>DS V4 Pro inference:</strong> 2 × 49B = 98 GFLOPs/token</li>
-            <li><strong>Equivalent dense (est. 1.8T):</strong> 2 × 1.8T = 3.6 TFLOPs/token</li>
-            <li><strong>MoE advantage:</strong> ~37× cheaper per inference token</li>
+            <li>Dense: 2×N &middot; MoE: 2×N<sub>active</sub> FLOPs/token</li>
+            <li>DS V4 Pro: 2×49B = <strong>98 GFLOPs/token</strong></li>
+            <li>Equiv dense (~1.8T): 2×1.8T = <strong>3.6 TFLOPs/token</strong></li>
+            <li><strong>~37× cheaper</strong> per inference token vs. equivalent dense model</li>
           </ul>
         </div>
-
         <div class="kp-footer">
           ⚠ The above represents the author's current understanding and may be incomplete.<br>
           LLM research advances rapidly. Last revised: May 2026.
