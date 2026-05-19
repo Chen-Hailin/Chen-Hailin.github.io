@@ -752,7 +752,6 @@
     if (document.querySelector('.nav-tab.active')?.dataset.tab === 'knowledge') {
       document.body.classList.add('knowledge-mode');
     }
-  });
 
     // Time chart toggle
     document.querySelectorAll('.time-btn').forEach(btn => {
@@ -772,7 +771,6 @@
 
     // Chart toggle
     document.querySelectorAll('.chart-btn').forEach(btn => {
-    document.querySelectorAll('.chart-btn').forEach(btn => {
       btn.addEventListener('click', function() {
         document.querySelectorAll('.chart-btn').forEach(b => {
           b.style.background = 'transparent';
@@ -786,6 +784,7 @@
         });
       });
     });
+  });
 </script>
 
 </body>
