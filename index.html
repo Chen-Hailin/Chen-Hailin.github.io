@@ -551,10 +551,11 @@
           <ul>
             <li>Chinchilla law: <strong>20 tokens / param</strong> &mdash; but inference-aware scaling pushes ratio much higher [<a href="https://arxiv.org/abs/2401.00448">Sardana et al. 2024</a>]</li>
             <li>DeepSeek V4 Pro: <strong>1.6T</strong> total params (49B active) &middot; <strong>32T</strong> training tokens</li>
-            <li>FLOPs/param/token = <strong>6</strong> (fwd×1 + bwd×2 + wupdate×2)</li>
-            <li>Total training FLOPs: 6 × 1.6e12 × 32e12 = <strong>3.07e26</strong> (307 YottaFLOPs)</li>
+            <li>FLOPs/param/token (training) = <strong>6</strong> (fwd×1 + bwd×2 + wupdate×2)</li>
+            <li>MoE training FLOPs use active params only: 6 × 49B × 32T = <strong>9.4 × 10²⁴</strong> (9.4 YottaFLOPs)</li>
+            <li>Dense-equivalent would be 6 × 1.6T × 32T = 307 YFLOPs — <strong>MoE saves ~33× compute</strong></li>
             <li>H200 FP8 peak: 3,958 TFLOPS &middot; MFU ≈ 40% &rarr; ~1,583 eff TFLOPS</li>
-            <li><strong>~54M GPU-hours</strong> &middot; 100K H200 &rarr; <strong>~23 days</strong> &middot; ~$162M</li>
+            <li><strong>~1.7M GPU-hours</strong> &middot; 100K H200 &rarr; <strong>~17 hrs</strong> &middot; ~$5.1M</li>
           </ul>
         </div>
 
