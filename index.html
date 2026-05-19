@@ -546,10 +546,8 @@
 
         <div class="kp-divider">━ ━ ━</div>
 
-        <div class="kp-section">
-          <h2>Basic Stats</h2>
-
-          <h2>Basic Statistics</h2>
+                <div class="kp-section">
+          <h2>I. Basic Statistics</h2>
           <ul>
             <li>Chinchilla law: <strong>20 tokens / param</strong> &mdash; but inference-aware scaling pushes ratio much higher [<a href="https://arxiv.org/abs/2401.00448">Sardana et al. 2024</a>]</li>
             <li>DeepSeek V4 Pro: <strong>1.6T</strong> total params (49B active) &middot; <strong>32T</strong> training tokens</li>
@@ -559,7 +557,7 @@
             <li><strong>~34M GPU-hours</strong> &middot; 100K H200 &rarr; <strong>~14 days</strong> &middot; ~$101M (@ $3/GPU-hr)</li>
           </ul>
 
-          <h3 style="margin-top:1.5em; font-size:1em; color:#5a3a1a;">I.a Ratio Reference</h3>
+          <h3>Ratio Reference</h3>
           <ul>
             <li><strong>Qwen 3.5 397B-A17B</strong>: ~26T tokens &rarr; ~65:1</li>
             <li><strong>Gemma 4 26B-A4B</strong>: ~13T tokens &rarr; ~500:1</li>
@@ -567,7 +565,12 @@
             <li><strong>DS V4 Pro 1.6T</strong>: 32T tokens &rarr; 20:1</li>
             <li><strong>LLaMA 3 405B</strong>: 15T tokens &rarr; 37:1</li>
           </ul>
-          <h3>I.b Performance vs. Scaling (Dense Models)</h3>
+        </div>
+
+        <div class="kp-divider">━ ━ ━</div>
+
+        <div class="kp-section">
+          <h2>II. Performance vs. Scaling (Dense Models)</h2>
           <div style="text-align:center;margin-bottom:0.8em;">
             <button class="chart-btn active" data-chart="mmlupro" style="background:#5a2a0a;color:#f5edd6;border:1px solid #8b7750;padding:0.3em 1.2em;font-size:0.75em;font-family:Georgia,serif;cursor:pointer;border-radius:2px;margin:0 0.3em;">MMLU-Pro</button>
             <button class="chart-btn" data-chart="gpqa" style="background:transparent;color:#5a2a0a;border:1px solid #8b7750;padding:0.3em 1.2em;font-size:0.75em;font-family:Georgia,serif;cursor:pointer;border-radius:2px;margin:0 0.3em;">GPQA</button>
@@ -594,7 +597,12 @@
             <text x="661.3919538386589" y="109.62500000000001" text-anchor="end" font-size="10" fill="#3a2a0e">LLaMA 3 405B</text><text x="442.2533978306703" y="203.37500000000003" text-anchor="start" font-size="10" fill="#3a2a0e">Qwen 3.5 27B</text><text x="438.9206798724092" y="222.125" text-anchor="start" font-size="10" fill="#3a2a0e">Gemma 4 26B</text><text x="345.23874270433885" y="287.75" text-anchor="start" font-size="10" fill="#3a2a0e">Qwen 3.5 9B</text><text x="526.3793672545751" y="203.37500000000003" text-anchor="start" font-size="10" fill="#3a2a0e">LLaMA 3 70B</text><text x="273.6282973550285" y="334.625" text-anchor="start" font-size="10" fill="#3a2a0e">Qwen 3.5 4B</text><text x="212.41886490335236" y="362.75" text-anchor="start" font-size="10" fill="#3a2a0e">Qwen 3.5 2B</text><text x="334.8377298067047" y="315.875" text-anchor="start" font-size="10" fill="#3a2a0e">LLaMA 3 8B</text><text x="131.50439647337137" y="390.875" text-anchor="start" font-size="10" fill="#3a2a0e">Qwen 3.5 0.8B</text>
           </svg>
           </div>
-          <h3>I.c Scaling Over Time</h3>
+        </div>
+
+        <div class="kp-divider">━ ━ ━</div>
+
+        <div class="kp-section">
+          <h2>III. Scaling Over Time</h2>
           <div style="text-align:center;margin-bottom:0.8em;">
             <button class="time-btn active" data-time="tokens" style="background:#5a2a0a;color:#f5edd6;border:1px solid #8b7750;padding:0.3em 1em;font-size:0.7em;font-family:Georgia,serif;cursor:pointer;border-radius:2px;margin:0 0.2em;">Tokens</button>
             <button class="time-btn" data-time="params" style="background:transparent;color:#5a2a0a;border:1px solid #8b7750;padding:0.3em 1em;font-size:0.7em;font-family:Georgia,serif;cursor:pointer;border-radius:2px;margin:0 0.2em;">Params</button>
@@ -634,7 +642,7 @@
             <circle cx="147.0" cy="305.7" r="6" fill="#8b2211" stroke="#5a2a0a" stroke-width="1.5"/><circle cx="281.0" cy="267.0" r="6" fill="#8b2211" stroke="#5a2a0a" stroke-width="1.5"/><circle cx="415.0" cy="48.9" r="6" fill="#8b2211" stroke="#5a2a0a" stroke-width="1.5"/><circle cx="549.0" cy="280.4" r="6" fill="#8b2211" stroke="#5a2a0a" stroke-width="1.5"/><circle cx="683.0" cy="179.4" r="6" fill="#8b2211" stroke="#5a2a0a" stroke-width="1.5"/>
             <text x="147.0" y="291.7" text-anchor="middle" font-size="9" fill="#3a2a0e">PaLM (2.5 Y)</text><text x="281.0" y="253.0" text-anchor="middle" font-size="9" fill="#3a2a0e">Falcon (3.8 Y)</text><text x="415.0" y="34.9" text-anchor="middle" font-size="9" fill="#3a2a0e">LLaMA 3 (36 Y)</text><text x="549.0" y="266.4" text-anchor="middle" font-size="9" fill="#3a2a0e">DS V3 MoE (3.3 Y)</text><text x="683.0" y="165.4" text-anchor="middle" font-size="9" fill="#3a2a0e">DS V4 MoE (9.4 Y)</text>
           </svg>
-          
+        </div>
         </div>
 
         <div class="kp-divider">━ ━ ━</div>
