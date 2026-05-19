@@ -549,21 +549,21 @@
                 <div class="kp-section">
           <h2>I. Basic Statistics</h2>
           <ul>
-            <li>Chinchilla law: <strong>20 tokens / param</strong> &mdash; but inference-aware scaling pushes ratio much higher [<a href="https://arxiv.org/abs/2401.00448">Sardana et al. 2024</a>]</li>
-            <li>DeepSeek V4 Pro: <strong>1.6T</strong> total params (49B active) &middot; <strong>32T</strong> training tokens</li>
+            <li>Chinchilla law: <strong>20 tokens / param</strong> [<a href="https://arxiv.org/abs/2203.15556">Hoffmann et al. 2022</a>] &mdash; but inference-aware scaling pushes ratio much higher [<a href="https://arxiv.org/abs/2401.00448">Sardana et al. 2024</a>]</li>
+            <li>DeepSeek V4 Pro: <strong>1.6T</strong> total params (49B active) &middot; <strong>32T</strong> training tokens [<a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro">model card</a>]</li>
             <li>FLOPs/param/token (training) = <strong>6</strong> (fwd×1 + bwd×2 + wupdate×2)</li>
-            <li>Hypothetical dense 1T model @ 32T tokens: 6 × 1T × 32T = <strong>1.92 × 10²⁶</strong> (192 YottaFLOPs)</li>
-            <li>H200 FP8 peak: 3,958 TFLOPS &middot; MFU ≈ 40% &rarr; ~1,583 eff TFLOPS</li>
+            <li>Hypothetical dense 1T model @ 32T tokens: 6 × 1T × 32T = <strong>1.92 × 10²⁶</strong> (192 YottaFLOPs) [<a href="https://arxiv.org/abs/2203.15556">Kaplan et al. 2020</a>]</li>
+            <li>H200 FP8 peak: 3,958 TFLOPS [<a href="https://www.nvidia.com/en-us/data-center/h200/">NVIDIA</a>] &middot; MFU ≈ 40% &rarr; ~1,583 eff TFLOPS</li>
             <li><strong>~34M GPU-hours</strong> &middot; 100K H200 &rarr; <strong>~14 days</strong> &middot; ~$101M (@ $3/GPU-hr)</li>
           </ul>
 
           <h3 style="font-size:0.9em; color:#5a3a1a; font-weight:600; margin-top:1.5em; margin-bottom:0.5em; border-bottom:1px solid #d4c39e; padding-bottom:0.3em;">Ratio Reference</h3>
           <ul>
-            <li><strong>Qwen 3.5 397B-A17B</strong>: ~26T tokens &rarr; ~65:1</li>
-            <li><strong>Gemma 4 26B-A4B</strong>: ~13T tokens &rarr; ~500:1</li>
-            <li><strong>K2.5 1T-A32B</strong>: ~18T tokens &rarr; ~18:1</li>
+            <li><strong>Qwen 3.5 397B-A17B</strong>: ~26T tokens &rarr; ~65:1 [<a href="https://qwen.ai/blog?id=qwen3.5">blog</a>]</li>
+            <li><strong>Gemma 4 26B-A4B</strong>: ~13T tokens &rarr; ~500:1 [<a href="https://ai.google.dev/gemma/docs/core/model_card_4">model card</a>]</li>
+            <li><strong>K2.5 1T-A32B</strong>: ~18T tokens &rarr; ~18:1 [<a href="https://huggingface.co/collections/alpindale/k2-68024b2a4c199b896259840f">model card</a>]</li>
             <li><strong>DS V4 Pro 1.6T</strong>: 32T tokens &rarr; 20:1</li>
-            <li><strong>LLaMA 3 405B</strong>: 15T tokens &rarr; 37:1</li>
+            <li><strong>LLaMA 3 405B</strong>: 15T tokens &rarr; 37:1 [<a href="https://ai.meta.com/blog/meta-llama-3/">Meta</a>]</li>
           </ul>
         </div>
 
@@ -572,8 +572,8 @@
         <div class="kp-section">
           <h2>II. Performance vs. Scaling (Dense Models)</h2>
           <div style="text-align:center;margin-bottom:0.8em;">
-            <button class="chart-btn active" data-chart="mmlupro" style="background:#5a2a0a;color:#f5edd6;border:1px solid #8b7750;padding:0.3em 1.2em;font-size:0.75em;font-family:Georgia,serif;cursor:pointer;border-radius:2px;margin:0 0.3em;">MMLU-Pro</button>
-            <button class="chart-btn" data-chart="gpqa" style="background:transparent;color:#5a2a0a;border:1px solid #8b7750;padding:0.3em 1.2em;font-size:0.75em;font-family:Georgia,serif;cursor:pointer;border-radius:2px;margin:0 0.3em;">GPQA</button>
+            <button class="chart-btn active" data-chart="mmlupro" style="background:#5a2a0a;color:#f5edd6;border:1px solid #8b7750;padding:0.3em 1.2em;font-size:0.75em;font-family:Georgia,serif;cursor:pointer;border-radius:2px;margin:0 0.3em;">MMLU-Pro [<a href="https://arxiv.org/abs/2406.01574" style="color:#8b7750;font-size:0.6em;">ref</a>]</button>
+            <button class="chart-btn" data-chart="gpqa" style="background:transparent;color:#5a2a0a;border:1px solid #8b7750;padding:0.3em 1.2em;font-size:0.75em;font-family:Georgia,serif;cursor:pointer;border-radius:2px;margin:0 0.3em;">GPQA [<a href="https://arxiv.org/abs/2311.12022" style="color:#8b7750;font-size:0.6em;">ref</a>]</button>
           </div>
           <div class="chart-container" style="position:relative;min-height:490px;">
                       <svg viewBox="0 0 850 480" style="width:100%;max-width:850px;display:block;margin:0 auto;font-family:Georgia,serif;" class="chart-mmlupro">
@@ -650,12 +650,12 @@
         <div class="kp-section">
           <h2>Tokenomics</h2>
           <div style="text-align:center;margin-bottom:0.8em;">
-            <button class="tmc-btn active" data-tmc="revenue" style="background:#5a2a0a;color:#f5edd6;border:1px solid #8b7750;padding:0.3em 0.8em;font-size:0.7em;font-family:Georgia,serif;cursor:pointer;border-radius:2px;margin:0 0.2em;">Revenue</button>
-            <button class="tmc-btn" data-tmc="price" style="background:transparent;color:#5a2a0a;border:1px solid #8b7750;padding:0.3em 0.8em;font-size:0.7em;font-family:Georgia,serif;cursor:pointer;border-radius:2px;margin:0 0.2em;">Price / token</button>
+            <button class="tmc-btn active" data-tmc="revenue" style="background:#5a2a0a;color:#f5edd6;border:1px solid #8b7750;padding:0.3em 0.8em;font-size:0.7em;font-family:Georgia,serif;cursor:pointer;border-radius:2px;margin:0 0.2em;">Revenue [<a href="https://www.bloomberg.com/news/articles/2025-09-30/openai-projects-12-billion-in-revenue-in-2025" style="color:#8b7750;font-size:0.6em;">src</a>]</button>
+            <button class="tmc-btn" data-tmc="price" style="background:transparent;color:#5a2a0a;border:1px solid #8b7750;padding:0.3em 0.8em;font-size:0.7em;font-family:Georgia,serif;cursor:pointer;border-radius:2px;margin:0 0.2em;">Price / token [<a href="https://openai.com/api/pricing/" style="color:#8b7750;font-size:0.6em;">pricing</a>]</button>
             <button class="tmc-btn" data-tmc="daily" style="background:transparent;color:#5a2a0a;border:1px solid #8b7750;padding:0.3em 0.8em;font-size:0.7em;font-family:Georgia,serif;cursor:pointer;border-radius:2px;margin:0 0.2em;">Tokens / day</button>
-            <button class="tmc-btn" data-tmc="gpuflops" style="background:transparent;color:#5a2a0a;border:1px solid #8b7750;padding:0.3em 0.8em;font-size:0.7em;font-family:Georgia,serif;cursor:pointer;border-radius:2px;margin:0 0.2em;">GPU FLOPs</button>
-            <button class="tmc-btn" data-tmc="gpucost" style="background:transparent;color:#5a2a0a;border:1px solid #8b7750;padding:0.3em 0.8em;font-size:0.7em;font-family:Georgia,serif;cursor:pointer;border-radius:2px;margin:0 0.2em;">$ / PFLOP</button>
-            <button class="tmc-btn" data-tmc="gpupower" style="background:transparent;color:#5a2a0a;border:1px solid #8b7750;padding:0.3em 0.8em;font-size:0.7em;font-family:Georgia,serif;cursor:pointer;border-radius:2px;margin:0 0.2em;">W / PFLOP</button>
+            <button class="tmc-btn" data-tmc="gpuflops" style="background:transparent;color:#5a2a0a;border:1px solid #8b7750;padding:0.3em 0.8em;font-size:0.7em;font-family:Georgia,serif;cursor:pointer;border-radius:2px;margin:0 0.2em;">GPU FLOPs [<a href="https://www.nvidia.com/en-us/data-center/" style="color:#8b7750;font-size:0.6em;">NVIDIA</a>]</button>
+            <button class="tmc-btn" data-tmc="gpucost" style="background:transparent;color:#5a2a0a;border:1px solid #8b7750;padding:0.3em 0.8em;font-size:0.7em;font-family:Georgia,serif;cursor:pointer;border-radius:2px;margin:0 0.2em;">$ / PFLOP [<a href="https://www.nextplatform.com/2024/03/28/nvidia-gpu-pricing/" style="color:#8b7750;font-size:0.6em;">est.</a>]</button>
+            <button class="tmc-btn" data-tmc="gpupower" style="background:transparent;color:#5a2a0a;border:1px solid #8b7750;padding:0.3em 0.8em;font-size:0.7em;font-family:Georgia,serif;cursor:pointer;border-radius:2px;margin:0 0.2em;">W / PFLOP [<a href="https://www.nvidia.com/en-us/data-center/" style="color:#8b7750;font-size:0.6em;">NVIDIA</a>]</button>
           </div>
           <div class="tmc-container" style="position:relative;min-height:470px;">
             <svg viewBox="0 0 780 460" style="width:100%;max-width:780px;display:block;margin:0 auto;font-family:Georgia,serif;" class="tmc-revenue">
